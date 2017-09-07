@@ -26,15 +26,14 @@ class addcompany(unittest.TestCase):
         # 浏览器最大化
         self.driver.maximize_window()
         self.driver.implicitly_wait(30)
-        self.l = Page_Login(self)  # login参数是LoginPage的实例
-        self.A = Page_Account(self)
-        self.A_GS = Page_Account_GS(self)
-        self.A_GS_ADD = Page_Account_GS_ADD(self)
+        self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
+        self.A = Page_Account(self.driver)
+        self.A_GS = Page_Account_GS(self.driver)
+        self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
 
     def test01_login(self):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
-        print("-------管理员登录 用例开始--------")
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
         # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
@@ -61,13 +60,12 @@ class addcompany(unittest.TestCase):
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
 
-
         # self.driver.find_elements_by_class_name("l-btn-text")[0].click()
         # self.driver.find_element_by_link_text("确定").click()
         # self.driver.implicitly_wait(10)
         log.info('------- 新增公司 用例结束 --------')
 
-    # def test_loginout(self):
+    # def test03_loginout(self):
     #     self.A.LoginOut()
     #     log.info("------- 退出     用例结束 --------")
 
@@ -75,7 +73,6 @@ class addcompany(unittest.TestCase):
     def tearDownClass(self):
         # 关闭浏览器
         self.driver.quit()
-
 
 # 执行测试主函数
 if __name__ == '__main__':

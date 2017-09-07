@@ -7,9 +7,9 @@ class Page_Login(ly):
     username_loc = ("id", 'txtaccount')  # 输入账号
     password_loc = ("id", 'txtpassword')
     submit_loc = ("id", 'btlogin')
-    #
-    # username = "kaka"
-    # password = "a123"
+
+    username = 'kaka'
+    password = 'a123'
 
     def input_username(self, username):
         '''输入账号框'''

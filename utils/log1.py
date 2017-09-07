@@ -6,7 +6,8 @@ class Log:
     def __init__(self):
         # 文件的命名
         self.logname = os.path.join(log_path, '%s.log'%time.strftime('%Y_%m_%d'))
-        self.logger = logging.getLogger()
+        # self.logger = logging.getLogger()
+        self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.DEBUG)
         # 日志输出格式
         self.formatter = logging.Formatter('[%(asctime)s] - %(filename)s] - %(levelname)s: %(message)s')
