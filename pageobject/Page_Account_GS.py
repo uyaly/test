@@ -7,10 +7,9 @@ class Page_Account_GS(ly):
     # 定位器，定位页面元素
     ADD_Button = ("id", 'add_Link')
 
-    def ADD(self):
-        self.send_keys(Keys.ENTER)
+    def add(self):
+        self.send_keys(self.ADD_Button, "Keys.ENTER")
 
     # def DEL(self):
     # def DEL(self):
     # def DEL(self):
-    #

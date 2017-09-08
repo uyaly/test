@@ -1,7 +1,7 @@
 # coding:utf-8
 import logging, time, os
 # 这个是日志保存本地的路径
-log_path = "D:\\PycharmProjects\\test\\test_hpk\\log"
+log_path = "D:\\PycharmProjects\\test_hpk2017\\log"
 class Log:
     def __init__(self):
         # 文件的命名

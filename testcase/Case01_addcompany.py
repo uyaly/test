@@ -18,18 +18,22 @@ log = Log()
 class addcompany(unittest.TestCase):
     u'''登录'''
 
+
     @classmethod
     def setUpClass(self):
         self.url = Config().get('URL')
         self.driver = webdriver.Firefox()
-        self.driver.get(self.url)
-        # 浏览器最大化
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
         self.A_GS = Page_Account_GS(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
+
+        # self.driver.get(self.url)
+        self.l.open(self.url)
+        # 浏览器最大化
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(30)
+
 
     def test01_login(self):
         self.username = Config().get('ADMIN')
@@ -46,6 +50,8 @@ class addcompany(unittest.TestCase):
         # log.info("-------管理员登录 用例结束--------")
 
     def test02_addcompany(self):
+        self.username = Config().get('GS_NAME')
+        self.psw = Config().get('PASSWORD')
         self.driver.implicitly_wait(10)
         # 进入模块
         self.A.IntoModule("公司")
@@ -54,11 +60,22 @@ class addcompany(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        # self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
-        self.A_GS.ADD()
+        self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
+        # self.A_GS.add()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
+        # 新增界面
+        self.A_GS_ADD.input_loginid(self.username)
+        time.sleep(3)
+        self.A_GS_ADD.input_psw(self.psw)
+        time.sleep(3)
+        self.A_GS_ADD.input_psw1(self.psw)
+        time.sleep(3)
+        self.A_GS_ADD.input_name(self.username)
+        time.sleep(3)
+        self.A_GS_ADD.click_save()
+        # self.A_GS_ADD.click_ok()
 
         # self.driver.find_elements_by_class_name("l-btn-text")[0].click()
         # self.driver.find_element_by_link_text("确定").click()
