@@ -1,15 +1,16 @@
 # coding:utf-8
 import time
-from selenium.webdriver.common.keys import Keys
 import unittest
+
 import ddt
-from selenium import webdriver
-from utils.config import Config, DRIVER_PATH
-from utils.log1 import Log
-from pageobject.Page_Login import Page_Login
 from pageobject.Page_Account import Page_Account
-from pageobject.Page_Account_GS import Page_Account_GS
-from pageobject.Page_Account_GS_ADD import Page_Account_GS_ADD
+from selenium import webdriver
+
+from pageobject.Page_Login import Page_Login
+from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
+from pageobject.account.Page_Account_HZ import Page_Account_GS
+from utils.config import Config
+from utils.log1 import Log
 
 log = Log()
 
@@ -36,20 +37,23 @@ class addcompany(unittest.TestCase):
 
 
     def test01_login(self):
+        '''管理员登录'''
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
         # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
+        self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
         # 期望结果
         # expect_result = expect
         # self.assertEqual(result, expect_result)
         # links = self.driver.find_elements(*self.locator_result)
         # for link in links:
-        print("-------管理员登录 用例结束--------")
-        # log.info("-------管理员登录 用例结束--------")
+        print("-------管理员登录  成功-------")
+        log.info("-------管理员登录  用例结束-------")
 
     def test02_addcompany(self):
+        '''新增公司'''
         self.username = Config().get('GS_NAME')
         self.psw = Config().get('PASSWORD')
         self.driver.implicitly_wait(10)
@@ -60,12 +64,11 @@ class addcompany(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
-        # self.A_GS.add()
+        self.A_GS.add()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
-        # 新增界面
+        # 新增界面输入值
         self.A_GS_ADD.input_loginid(self.username)
         time.sleep(3)
         self.A_GS_ADD.input_psw(self.psw)
@@ -74,17 +77,15 @@ class addcompany(unittest.TestCase):
         time.sleep(3)
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
+        # 保存
         self.A_GS_ADD.click_save()
-        # self.A_GS_ADD.click_ok()
+        self.A_GS_ADD.click_ok()
+        log.info('-------新增公司    用例结束-------')
 
-        # self.driver.find_elements_by_class_name("l-btn-text")[0].click()
-        # self.driver.find_element_by_link_text("确定").click()
-        # self.driver.implicitly_wait(10)
-        log.info('------- 新增公司 用例结束 --------')
-
-    # def test03_loginout(self):
-    #     self.A.LoginOut()
-    #     log.info("------- 退出     用例结束 --------")
+    def test03_loginout(self):
+        '''退出'''
+        self.A.LoginOut()
+        log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

@@ -11,7 +11,7 @@ class Page_Account_GS_ADD(ly):
     name_loc = ("id", '_easyui_textbox_input2')
     # 新增，先iframe
     # ifr_loc = ("id", 'mainIframe')
-    save_loc = ("class name", 'l-btn-text')    # 保存
+    save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')   #   确定
     username = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
@@ -34,8 +34,8 @@ class Page_Account_GS_ADD(ly):
 
     def click_save(self):
         '''保存'''
-        self.click(self.save_loc)
+        self.click(self.save_button)
 
     def click_ok(self):
         '''确定'''
-        self.click(self.OK_loc)
+        self.click(self.ok_button)

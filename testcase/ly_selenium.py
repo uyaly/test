@@ -88,6 +88,15 @@ class ly(object):
         element = self.find_element(locator)
         element.clear()
         element.send_keys(text)
+    def send_keys_botton(self, locator, text):
+        '''
+        发送文本，清空后输入
+        Usage:
+        locator = ("id","xxx")
+        driver.send_keys(locator, text)
+        '''
+        element = self.find_element(locator)
+        element.send_keys(text)
     def is_text_in_element(self, locator, text, timeout=10):
         '''
         判断文本在元素里,没定位到元素返回False，定位到返回判断结果布尔值
