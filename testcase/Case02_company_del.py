@@ -15,7 +15,7 @@ log = Log()
 
 
 @ddt.ddt
-class addcompany(unittest.TestCase):
+class delcompany(unittest.TestCase):
     u'''登录'''
 
 
@@ -25,7 +25,6 @@ class addcompany(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
-        self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
         self.A_GS_DEL = Page_Account_GS_DEL(self.driver)
 
         # self.driver.get(self.url)
@@ -41,7 +40,7 @@ class addcompany(unittest.TestCase):
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
         # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
-        self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
+        # self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
         # 期望结果
         # expect_result = expect
         # self.assertEqual(result, expect_result)
@@ -53,6 +52,7 @@ class addcompany(unittest.TestCase):
     def test02_delcompany(self):
         '''删除公司'''
         self.driver.implicitly_wait(10)
+        self.username = Config().get('GS_NAME')
         # 进入模块
         self.A.IntoModule("公司")
         self.driver.implicitly_wait(30)
@@ -60,16 +60,17 @@ class addcompany(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行
+        time.sleep(3)
         self.A_GS_DEL.select_row(self.username)
         # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-
+        time.sleep(3)
         self.A_GS_DEL.click_del()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
         # 确定按钮
-        self.A_GS_ADD.click_ok()
-        log.info('-------新增公司    用例结束-------')
+        self.A_GS_DEL.click_ok()
+        log.info('-------删除公司    用例结束-------')
 
     def test03_loginout(self):
         '''退出'''
