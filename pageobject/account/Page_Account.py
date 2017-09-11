@@ -17,6 +17,13 @@ class Page_Account(ly):
     DEL_Button = ("id", 'del_Link')
     EDIT_Button = ("id", 'edit_Link')
     QUERY_Button = ("id", 'a_query')
+    # 删除一行
+    company_loc = ("class name", 'datagrid-row')    # 待删行
+    ok_button = ("link text", '确定')    # 确定
+    gs_name = Config().get('GS_NAME')
+    psw = Config().get('PASSWORD')
+    # 查询
+    account_loc = ("id", 'a_query')
 
     def IntoModule(self, module):
         '''进入模块'''
@@ -51,3 +58,21 @@ class Page_Account(ly):
     def query(self):
         '''点击查询按钮'''
         self.send_keys_botton(self.QUERY_Button, Keys.ENTER)
+
+    def select_row(self, username):
+        '''选中列表中一行'''
+        company = self.find_elements(self.company_loc)
+        # print company[1]
+        for i in company:
+            if (company[i].text == username):
+                self.click(self.company_loc)
+            else:
+                print "没有查到"
+
+    def click_ok(self):
+        '''确定'''
+        self.click(self.ok_button)
+
+    def input_account(self, username):
+        '''输入查询账号'''
+        self.send_keys(self.account_loc, username)

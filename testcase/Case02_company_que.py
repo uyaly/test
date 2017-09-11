@@ -1,11 +1,12 @@
 # coding:utf-8
 import time
 import unittest
+
 import ddt
-from pageobject.account.Page_Account import Page_Account
 from selenium import webdriver
 from pageobject.Page_Login import Page_Login
-from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
+from pageobject.account.Page_Account import Page_Account
+# from pageobject.account.Page_Account_GS_DEL import Page_Account_GS_DEL
 from utils.config import Config
 from utils.log1 import Log
 
@@ -13,7 +14,7 @@ log = Log()
 
 
 @ddt.ddt
-class addcompany(unittest.TestCase):
+class quecompany(unittest.TestCase):
     u'''登录'''
 
 
@@ -23,8 +24,8 @@ class addcompany(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
-        self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
 
+        # self.driver.get(self.url)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
@@ -46,41 +47,30 @@ class addcompany(unittest.TestCase):
         print("-------管理员登录  成功-------")
         log.info("-------管理员登录  用例结束-------")
 
-    def test02_addcompany(self):
-        '''新增公司'''
-        self.username = Config().get('GS_NAME')
-        self.psw = Config().get('PASSWORD')
+    def test02_quecompany(self):
+        '''查询公司'''
         self.driver.implicitly_wait(10)
+        self.GS_name = Config().get('GS_NAME')
         # 进入模块
         self.A.IntoModule("公司")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
+        # 输入查询帐号
+        time.sleep(3)
+        self.A.input_account(self.GS_name)
         # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        # self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
-        self.A.add()
-        self.driver.implicitly_wait(3)
+        time.sleep(3)
+        self.A.query()
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
-        # 新增界面
-        self.A_GS_ADD.input_loginid(self.username)
-        time.sleep(3)
-        self.A_GS_ADD.input_psw(self.psw)
-        time.sleep(3)
-        self.A_GS_ADD.input_psw1(self.psw)
-        time.sleep(3)
-        self.A_GS_ADD.input_name(self.username)
-        time.sleep(3)
-        self.A_GS_ADD.click_save()
-        self.A_GS_ADD.alert()
-        self.A_GS_ADD.click_ok()
-        log.info('-------新增公司    用例结束-------')
+        log.info('-------查询公司    用例结束-------')
 
-    def test03_loginout(self):
-        '''退出'''
-        self.A.LoginOut()
-        log.info("-------管理员退出  用例结束-------")
+    # def test03_loginout(self):
+    #     '''退出'''
+    #     self.A.LoginOut()
+    #     log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

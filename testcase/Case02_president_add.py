@@ -25,7 +25,6 @@ class addcompany(unittest.TestCase):
         self.A = Page_Account(self.driver)
         self.A_HZ_ADD = Page_Account_HZ_ADD(self.driver)
 
-        # self.driver.get(self.url)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
