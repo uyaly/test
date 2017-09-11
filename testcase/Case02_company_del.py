@@ -7,6 +7,7 @@ from selenium import webdriver
 from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account import Page_Account
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
+from pageobject.account.Page_Account_GS_DEL import Page_Account_GS_DEL
 from utils.config import Config
 from utils.log1 import Log
 
@@ -24,15 +25,14 @@ class addcompany(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
-        self.A_GS = Page_Account_GS(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
+        self.A_GS_DEL = Page_Account_GS_DEL(self.driver)
 
         # self.driver.get(self.url)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
         self.driver.implicitly_wait(30)
-
 
     def test01_login(self):
         '''管理员登录'''
@@ -59,13 +59,15 @@ class addcompany(unittest.TestCase):
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
+        # 选中一行
+        self.A_GS_DEL.select_row(self.username)
         # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        self.A_GS.add()
+
+        self.A_GS_DEL.click_del()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
-        # 保存
-        self.A_GS_ADD.click_save()
+        # 确定按钮
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
 
