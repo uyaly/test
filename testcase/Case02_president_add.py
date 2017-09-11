@@ -4,10 +4,8 @@ import unittest
 import ddt
 from pageobject.account.Page_Account import Page_Account
 from selenium import webdriver
-
 from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_HZ_ADD import Page_Account_HZ_ADD
-
 from utils.config import Config
 from utils.log1 import Log
 
@@ -70,6 +68,7 @@ class addcompany(unittest.TestCase):
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
         # 新增界面
+        time.sleep(3)
         self.A_HZ_ADD.input_club(self.username)
         time.sleep(3)
         # 滚动到底部
