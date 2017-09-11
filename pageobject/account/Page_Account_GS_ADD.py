@@ -36,6 +36,15 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
+    def alert(self):
+        '''保存'''
+        if self.is_text_in_value(self.exist_loc,"用户名已经被占用") == 1:
+            print "新建公司失败，用户名被占用"
+        elif self.is_text_in_value(self.success_loc, "新建公司成功") == 1:
+            print "新建公司成功"
+        else:
+            print ""
+
     def click_ok(self):
         '''确定'''
         self.click(self.ok_button)

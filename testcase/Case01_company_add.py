@@ -75,6 +75,7 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
+        self.A_GS_ADD.alert()
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
 
