@@ -9,14 +9,12 @@ class Page_Account_GS_ADD(ly):
     password_loc = ("id", '_easyui_textbox_input6')
     password1_loc = ("id", '_easyui_textbox_input7')
     name_loc = ("id", '_easyui_textbox_input2')
-    # save_button = ("text", '保存')    # 保存
-    # cancle_button = ("text", '取消')    # 取消
+    # 弹出窗口元素
     save_button = ("css", "span.l-btn-text")    # 保存
     ok_button = ("css","span.l-btn-text")    # 确定
+    close_button = ("css","a.panel-tool-close")    # 关闭
     cancle_button = ("link text", '取  消')    # 取消
-    success_loc = ("xpath", ".//*[@id='body']/div[6]/div[2]/div[2]")
-    # exist_loc = ("class name", "tooltip-content")
-    exist_loc = ("xpath", ".//*[@id='body']/div[9]/div[1]")
+
     username = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
 
@@ -40,21 +38,21 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
-    def click_cancle(self):
-        '''保存'''
-        self.click(self.cancle_button)
+    def click_close(self):
+        '''取消'''
+        self.click(self.close_button)
 
     def alert(self):
         '''保存'''
-        if self.is_text_in_value(self.exist_loc,"用户名已经被占用") == 1:
-            print "新建公司失败，用户名被占用"
-            self.click_cancle()
-        elif self.is_text_in_value(self.success_loc, "新建公司成功") == 1:
-            print "新建公司成功"
+        if self.is_text_in_value(self.ok_button, "确定"):
+            msg = "新建公司成功"
             self.click_ok()
+            return msg
+        # elif:
         else:
-            print ""
-
+            msg = "新增公司失败，用户名被占用"
+            self.click_close()
+            return msg
     def click_ok(self):
         '''确定'''
         self.click(self.ok_button)

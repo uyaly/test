@@ -36,6 +36,7 @@ class addcompany(unittest.TestCase):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
+        log.info('-------管理员登录    用例结束-------')
 
     def test02_addcompany(self):
         '''新增公司'''
@@ -63,16 +64,14 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-        try:
-            self.A_GS_ADD.alert()
-            self.A_GS_ADD.click_ok()
-        except NoSuchElementException as msg:
-            print u"查找元素异常%s"%msg
+        result = self.A_GS_ADD.alert()
+        log.info("-------" + result + "-------")
         log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):
         '''退出'''
-        self.A.LoginOut()
+        # self.A.LoginOut()
+        self.driver.find_element_by_id("loginOut").click()
         log.info("-------管理员退出  用例结束-------")
 
     @classmethod
