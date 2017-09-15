@@ -53,6 +53,7 @@ class Page_Account_GS_ADD(ly):
             msg = "新增公司失败，用户名被占用"
             self.click_close()
             return msg
+
     def click_ok(self):
         '''确定'''
         self.click(self.ok_button)

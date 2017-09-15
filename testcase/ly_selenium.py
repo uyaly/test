@@ -254,15 +254,15 @@ class ly(object):
         Select(element).select_by_value(text)
 if __name__ == '__main__':
     # if下面的代码都是测试调试的代码，自测内容
-    driver = browser()
-    driver_n = ly(driver)     # 返回类的实例：打开浏览器
-    driver_n.open("http://www.cnblogs.com/yoyoketang/")     # 打开url，顺便判断打开的页面对不对
-    input_loc = ("id", "kw")
-    print driver_n.get_title()
-    #　el = driver_n.find_element(input_loc)
-    # driver_n.send_keys(input_loc, "yoyo")
-    # button_loc = ("id", "su")
-    # driver_n.click(button_loc)
-    # print driver_n.text_in_element(("name", "tj_trmap"), "地图")
-    # set_loc = ("link text", "设置")
-    # driver_n.move_to_element(set_loc)
+    # driver = browser()
+    # driver_n = ly(driver)     # 返回类的实例：打开浏览器
+    # driver_n.open("http://www.cnblogs.com/yoyoketang/")     # 打开url，顺便判断打开的页面对不对
+    # input_loc = ("id", "kw")
+    # print driver_n.get_title()
+    # #　el = driver_n.find_element(input_loc)
+    # # driver_n.send_keys(input_loc, "yoyo")
+    # # button_loc = ("id", "su")
+    # # driver_n.click(button_loc)
+    # # print driver_n.text_in_element(("name", "tj_trmap"), "地图")
+    # # set_loc = ("link text", "设置")
+    # # driver_n.move_to_element(set_loc)
