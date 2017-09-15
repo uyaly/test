@@ -9,10 +9,9 @@ class Page_Account_GS_ADD(ly):
     password_loc = ("id", '_easyui_textbox_input6')
     password1_loc = ("id", '_easyui_textbox_input7')
     name_loc = ("id", '_easyui_textbox_input2')
-    # 新增，先iframe
-    # ifr_loc = ("id", 'mainIframe')
-    save_button = ("class name", 'l-btn-text')    # 保存
-    ok_button = ("link text", '确定')   #   确定
+    save_button = ("text", '保存')    # 保存
+    cancle_button = ("text", '取消')    # 取消
+    # save_button = ("class name", 'l-btn-text')    # 保存
     username = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
 
@@ -36,10 +35,16 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
+    def click_save(self):
+        '''保存'''
+        self.click(self.save_button)
+
     def alert(self):
         '''保存'''
         if self.is_text_in_value(self.exist_loc,"用户名已经被占用") == 1:
             print "新建公司失败，用户名被占用"
+            self.clik_cancle
+            ok_button = ("l-btn-text", '取消')    # 确定
         elif self.is_text_in_value(self.success_loc, "新建公司成功") == 1:
             print "新建公司成功"
         else:

@@ -8,6 +8,7 @@ from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from utils.config import Config
 from utils.log1 import Log
+from selenium.common.exceptions import NoSuchElementException
 
 log = Log()
 
@@ -35,16 +36,6 @@ class addcompany(unittest.TestCase):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
-        # 测试结果,判断是否登录成功
-        # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
-        # self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
-        # 期望结果
-        # expect_result = expect
-        # self.assertEqual(result, expect_result)
-        # links = self.driver.find_elements(*self.locator_result)
-        # for link in links:
-        print("-------管理员登录  成功-------")
-        log.info("-------管理员登录  用例结束-------")
 
     def test02_addcompany(self):
         '''新增公司'''
@@ -54,14 +45,13 @@ class addcompany(unittest.TestCase):
         # 进入模块
         self.A.IntoModule("公司")
         self.driver.implicitly_wait(30)
-        # 点击新增按钮
+        # 切换ifream
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        # self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
+        # 点击新增
         self.A.add()
         self.driver.implicitly_wait(3)
-        # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
+        # 释放iframe，重新回到主页上
         self.driver.switch_to.default_content()
         # 新增界面
         self.A_GS_ADD.input_loginid(self.username)
@@ -73,8 +63,11 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-        self.A_GS_ADD.alert()
-        self.A_GS_ADD.click_ok()
+        try:
+            self.A_GS_ADD.alert()
+            self.A_GS_ADD.click_ok()
+        except NoSuchElementException as msg:
+            print u"查找元素异常%s"%msg
         log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):
