@@ -47,12 +47,12 @@ class Page_Account_GS_ADD(ly):
         if self.is_text_in_value(self.ok_button, "确定"):
             msg = "新建公司成功"
             self.click_ok()
-            return msg
+            return True
         # elif:
         else:
             msg = "新增公司失败，用户名被占用"
             self.click_close()
-            return msg
+            return False
 
     def click_ok(self):
         '''确定'''

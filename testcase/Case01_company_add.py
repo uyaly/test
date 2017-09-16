@@ -36,7 +36,8 @@ class addcompany(unittest.TestCase):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
-        log.info('-------管理员登录    用例结束-------')
+        self.assertTrue(self.A.is_text_in_value(self.A.loginout_loc, "退出"), "-------管理员登录失败-------")
+        # log.info('-------管理员登录    用例结束-------')
 
     def test02_addcompany(self):
         '''新增公司'''
@@ -65,14 +66,14 @@ class addcompany(unittest.TestCase):
         time.sleep(3)
         self.A_GS_ADD.click_save()
         result = self.A_GS_ADD.alert()
-        log.info("-------" + result + "-------")
-        log.info('-------新增公司    用例结束-------')
+        self.assertTrue(result, "-------新增公司失败-------")
+        # log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):
         '''退出'''
         # self.A.LoginOut()
         self.driver.find_element_by_id("loginOut").click()
-        log.info("-------管理员退出  用例结束-------")
+        # log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):
