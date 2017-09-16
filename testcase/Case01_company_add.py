@@ -73,6 +73,11 @@ class addcompany(unittest.TestCase):
         '''退出'''
         # self.A.LoginOut()
         self.driver.find_element_by_id("loginOut").click()
+        print self.driver.find_element_by_id("btlogin").text
+
+
+        print self.A.is_text_in_value(self.l.submit_loc, "登录")
+        self.assertTrue(self.A.is_text_in_value(self.l.submit_loc, "登录"), "-------管理员退出失败-------")
         # log.info("-------管理员退出  用例结束-------")
 
     @classmethod

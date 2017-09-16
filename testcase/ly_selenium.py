@@ -94,7 +94,7 @@ class ly(object):
 
     def send_keys_botton(self, locator, text):
         '''
-        发送文本，清空后输入
+        发送文本，例如键盘的回车
         Usage:
         locator = ("id","xxx")
         driver.send_keys(locator, text)
