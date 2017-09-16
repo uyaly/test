@@ -11,7 +11,7 @@ class Page_Account_GS_ADD(ly):
     name_loc = ("id", '_easyui_textbox_input2')
     # 弹出窗口元素
     save_button = ("css", "span.l-btn-text")    # 保存
-    ok_button = ("css","span.l-btn-text")    # 确定
+    ok_button = ("id","l-btn-text")    # 确定
     close_button = ("css","a.panel-tool-close")    # 关闭
     cancle_button = ("link text", '取  消')    # 取消
 
