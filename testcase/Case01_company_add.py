@@ -12,11 +12,9 @@ from selenium.common.exceptions import NoSuchElementException
 
 log = Log()
 
-
 @ddt.ddt
 class addcompany(unittest.TestCase):
     u'''登录'''
-
 
     @classmethod
     def setUpClass(self):
@@ -25,7 +23,6 @@ class addcompany(unittest.TestCase):
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
-
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
@@ -67,9 +64,7 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-        print self.A_GS_ADD.alert()
-        self.A_GS_ADD.alert()
-        # self.assertTrue(result, "-------新增公司失败-------")
+
         # log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):

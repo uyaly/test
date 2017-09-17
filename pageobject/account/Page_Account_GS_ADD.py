@@ -11,9 +11,11 @@ class Page_Account_GS_ADD(ly):
     name_loc = ("id", '_easyui_textbox_input2')
     # 弹出窗口元素
     save_button = ("css", "span.l-btn-text")    # 保存
-    ok_button = ("id","l-btn-text")    # 确定
+    ok_button = ("class name","l-btn-text")    # 确定
+    # ok_button = ("class name","l-btn-small")    # 确定
     close_button = ("css","a.panel-tool-close")    # 关闭
     cancle_button = ("link text", '取  消')    # 取消
+    alart_win = ("class name", "messager-window")        #  系统提示窗口
 
     username = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
@@ -38,21 +40,38 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
+        result = EC.alert_is_present()(driver)
+        if result:
+            print result.text
+            result.accept()
+        else:
+            print "alert 未弹出！"
+
+        # ok = self.l.is_visibility(self.driver.find_elements_by_class_name("messager-window"))
+        # print ok
+        # if ok == False:
+        #     print "新增公司失败，用户名被占用"
+        #     self.A.click_close()
+        # else:
+        #     print "新建公司成功"
+        #     self.A.click_ok()
+
     def click_close(self):
         '''取消'''
         self.click(self.close_button)
 
-    def alert(self):
-        '''保存'''
-        if self.is_text_in_value(self.ok_button, "确定"):
-            msg = "新建公司成功"
-            self.click_ok()
-            return True
-        # elif:
-        else:
-            msg = "新增公司失败，用户名被占用"
-            self.click_close()
-            return False
+    # def alert(self):
+    #     '''保存'''
+    #     if self.is_alert_present()
+    #     if self.is_text_in_value(self.ok_button, "确定"):
+    #         print "新建公司成功"
+    #         self.click_ok()
+    #         return True
+    #     # elif:
+    #     else:
+    #         print "新增公司失败，用户名被占用"
+    #         self.click_close()
+    #         return False
 
     def click_ok(self):
         '''确定'''
