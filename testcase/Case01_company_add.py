@@ -8,25 +8,22 @@ from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from utils.config import Config
 from utils.log1 import Log
-from selenium.common.exceptions import NoSuchElementException
-
 log = Log()
 
 @ddt.ddt
 class addcompany(unittest.TestCase):
-    u'''登录'''
+    u'''管理员登录新增公司'''
 
     @classmethod
     def setUpClass(self):
         self.url = Config().get('URL')
         self.driver = webdriver.Firefox()
-        self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
+        self.l = Page_Login(self.driver)
         self.A = Page_Account(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
 
     def test01_login(self):
         '''管理员登录'''
@@ -34,9 +31,8 @@ class addcompany(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         time.sleep(10)
-        # print self.driver.current_url
         self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Index", "-------管理员登录失败-------")
-        # log.info('-------管理员登录    用例结束-------')
+        log.info('-------管理员登录    用例结束-------')
 
     def test02_addcompany(self):
         '''新增公司'''
@@ -65,13 +61,13 @@ class addcompany(unittest.TestCase):
         time.sleep(3)
         self.A_GS_ADD.click_save()
         self.assertTrue(self.A_GS_ADD.alert(), "-------新建公司失败-------")
-        # log.info('-------新增公司    用例结束-------')
+        log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):
-        '''退出'''
+        '''管理员退出'''
         self.A.LoginOut()
         self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Login", "-------管理员退出失败-------")
-        # log.info("-------管理员退出  用例结束-------")
+        log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):
