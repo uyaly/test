@@ -64,17 +64,12 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-        # try:
-        # result = self.A_GS_ADD.alert()
-        # except NoSuchElementException as msg:
-        #     print u"查找弹出窗口元素异常%s"%msg
         self.assertTrue(self.A_GS_ADD.alert(), "-------新建公司失败-------")
         # log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):
         '''退出'''
-        # self.A.LoginOut()
-        self.driver.find_element_by_id("loginOut").click()
+        self.A.LoginOut()
         self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Login", "-------管理员退出失败-------")
         # log.info("-------管理员退出  用例结束-------")
 

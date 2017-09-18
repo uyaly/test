@@ -14,8 +14,8 @@ class Page_Account_GS_ADD(ly):
     save_button = ("css", "span.l-btn-text")    # 保存
     ok_button = ("class name","l-btn-text")    # 确定
     # ok_button = ("class name","l-btn-small")    # 确定
-    close_button = ("css","a.panel-tool-close")    # 关闭
-    cancle_button = ("link text", '取  消')    # 取消
+    close_button = ("class name","panel-tool-close")    # 关闭
+    # cancle_button = ("link text", '取  消')    # 取消
     alart_win = ("class name", "messager-window")        #  系统提示窗口
 
     username = Config().get('GS_NAME')
@@ -44,23 +44,29 @@ class Page_Account_GS_ADD(ly):
 
     def click_close(self):
         '''取消'''
-        self.click(self.close_button)
+        try:
+            self.is_located(self.close_button)
+            self.click(self.close_button)
+        except:
+            print u"查找弹出窗口元素异常"
+
 
     def alert(self):
         '''新建成功，点击弹出界面按钮；新建不成功，关闭新建界面'''
         try:
             al = self.is_located(self.alart_win)
-        except NoSuchElementException as msg:
-            print u"查找弹出窗口元素异常%s"%msg
-
-        if al is False:
-            print "新增公司失败，用户名被占用"
+            if al is not False:
+                # 新建公司成功
+                self.click_ok()
+                return True
+            else:
+                # 新建公司失败
+                self.click_close()
+                return False
+        except:
             self.click_close()
             return False
-        else:
-            print "新建公司成功"
-            self.click_ok()
-            return True
+            print u"查找弹出窗口元素异常"
 
     def click_ok(self):
         '''确定'''
