@@ -64,7 +64,11 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-
+        # try:
+        # result = self.A_GS_ADD.alert()
+        # except NoSuchElementException as msg:
+        #     print u"查找弹出窗口元素异常%s"%msg
+        self.assertTrue(self.A_GS_ADD.alert(), "-------新建公司失败-------")
         # log.info('-------新增公司    用例结束-------')
 
     def test03_loginout(self):

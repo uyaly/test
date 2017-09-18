@@ -1,6 +1,7 @@
 # coding:utf-8
 from testcase.ly_selenium import ly  # 导入4.11二次封装的类
 from utils.config import Config, DRIVER_PATH
+from selenium.common.exceptions import NoSuchElementException
 
 
 class Page_Account_GS_ADD(ly):
@@ -40,38 +41,26 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
-        result = EC.alert_is_present()(driver)
-        if result:
-            print result.text
-            result.accept()
-        else:
-            print "alert 未弹出！"
-
-        # ok = self.l.is_visibility(self.driver.find_elements_by_class_name("messager-window"))
-        # print ok
-        # if ok == False:
-        #     print "新增公司失败，用户名被占用"
-        #     self.A.click_close()
-        # else:
-        #     print "新建公司成功"
-        #     self.A.click_ok()
 
     def click_close(self):
         '''取消'''
         self.click(self.close_button)
 
-    # def alert(self):
-    #     '''保存'''
-    #     if self.is_alert_present()
-    #     if self.is_text_in_value(self.ok_button, "确定"):
-    #         print "新建公司成功"
-    #         self.click_ok()
-    #         return True
-    #     # elif:
-    #     else:
-    #         print "新增公司失败，用户名被占用"
-    #         self.click_close()
-    #         return False
+    def alert(self):
+        '''新建成功，点击弹出界面按钮；新建不成功，关闭新建界面'''
+        try:
+            al = self.is_located(self.alart_win)
+        except NoSuchElementException as msg:
+            print u"查找弹出窗口元素异常%s"%msg
+
+        if al is False:
+            print "新增公司失败，用户名被占用"
+            self.click_close()
+            return False
+        else:
+            print "新建公司成功"
+            self.click_ok()
+            return True
 
     def click_ok(self):
         '''确定'''
