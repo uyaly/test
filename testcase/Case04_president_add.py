@@ -13,7 +13,7 @@ log = Log()
 
 
 @ddt.ddt
-class addcompany(unittest.TestCase):
+class addpresident(unittest.TestCase):
     u'''登录'''
 
 

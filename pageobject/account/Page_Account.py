@@ -6,12 +6,16 @@ from selenium.webdriver.common.keys import Keys
 class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
-    Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/div/a/em")
-    GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/ul/li[1]/a")
-    HZ_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/ul/li[2]/a")
-    ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/ul/li[3]/a")
-    DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/ul/li[4]/a")
-    HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[3]/ul/li[5]/a")
+    .//*[@id='navi']/div/div/div[3]/div/a/em
+    Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
+    GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
+    SCEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
+    CEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[3]/a")
+    LEA_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[4]/a")
+    HZ_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[5]/a")
+    ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[6]/a")
+    DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[7]/a")
+    HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[8]/a")
     # 功能按钮，增删改查
     ADD_Button = ("id", 'add_Link')
     DEL_Button = ("id", 'del_Link')
@@ -29,6 +33,14 @@ class Page_Account(ly):
         '''进入模块'''
         self.click(self.Account_loc)
         if (module == "公司"):
+            self.click(self.GS_loc)
+        elif (module == "超级总监"):
+            self.click(self.SCEO_loc)
+        elif (module == "总监"):
+            self.click(self.CEO_loc)
+        elif (module == "联盟主"):
+            self.click(self.GS_loc)
+        elif (module == "公司"):
             self.click(self.GS_loc)
         elif (module == "会长"):
             self.click(self.HZ_loc)
