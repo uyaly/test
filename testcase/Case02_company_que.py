@@ -1,76 +1,65 @@
 # coding:utf-8
 import time
 import unittest
-
 import ddt
+from pageobject.account.Page_Account import Page_Account
 from selenium import webdriver
 from pageobject.Page_Login import Page_Login
-from pageobject.account.Page_Account import Page_Account
-# from pageobject.account.Page_Account_GS_DEL import Page_Account_GS_DEL
+from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from utils.config import Config
 from utils.log1 import Log
-
 log = Log()
 
-
 @ddt.ddt
-class quecompany(unittest.TestCase):
-    u'''登录'''
-
+class addcompany(unittest.TestCase):
+    u'''管理员登录新增公司'''
 
     @classmethod
     def setUpClass(self):
         self.url = Config().get('URL')
         self.driver = webdriver.Firefox()
-        self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
+        self.l = Page_Login(self.driver)
         self.A = Page_Account(self.driver)
-
-        # self.driver.get(self.url)
+        self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
 
     def test01_login(self):
         '''管理员登录'''
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
-        # 测试结果,判断是否登录成功
-        # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
-        # self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
-        # 期望结果
-        # expect_result = expect
-        # self.assertEqual(result, expect_result)
-        # links = self.driver.find_elements(*self.locator_result)
-        # for link in links:
-        print("-------管理员登录  成功-------")
-        log.info("-------管理员登录  用例结束-------")
+        time.sleep(10)
+        self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Index", "-------管理员登录失败-------")
+        log.info('-------管理员登录    用例结束-------')
 
     def test02_quecompany(self):
         '''查询公司'''
+        self.username = Config().get('GS_NAME')
+        self.psw = Config().get('PASSWORD')
         self.driver.implicitly_wait(10)
-        self.GS_name = Config().get('GS_NAME')
         # 进入模块
         self.A.IntoModule("公司")
         self.driver.implicitly_wait(30)
-        # 点击新增按钮
+        # 输入公司账号
+        self.A.input_account(self.username)
+        # 切换ifream
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 输入查询帐号
-        time.sleep(3)
-        self.A.input_account(self.GS_name)
-        # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        time.sleep(3)
+        # 点击查询
         self.A.query()
-        # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
+        # 释放iframe
         self.driver.switch_to.default_content()
+
+        self.assertTrue(self.A.is_visibility(self.A.company_loc) == self.username, "-------查询公司失败-------")
         log.info('-------查询公司    用例结束-------')
 
-    # def test03_loginout(self):
-    #     '''退出'''
-    #     self.A.LoginOut()
-    #     log.info("-------管理员退出  用例结束-------")
+    def test03_loginout(self):
+        '''管理员退出'''
+        self.A.LoginOut()
+        self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Login", "-------管理员退出失败-------")
+        log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

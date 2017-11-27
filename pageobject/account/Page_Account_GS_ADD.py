@@ -1,6 +1,7 @@
 # coding:utf-8
 from testcase.ly_selenium import ly  # 导入4.11二次封装的类
 from utils.config import Config, DRIVER_PATH
+from selenium.common.exceptions import NoSuchElementException
 
 
 class Page_Account_GS_ADD(ly):
@@ -9,10 +10,14 @@ class Page_Account_GS_ADD(ly):
     password_loc = ("id", '_easyui_textbox_input6')
     password1_loc = ("id", '_easyui_textbox_input7')
     name_loc = ("id", '_easyui_textbox_input2')
-    # 新增，先iframe
-    # ifr_loc = ("id", 'mainIframe')
-    save_button = ("class name", 'l-btn-text')    # 保存
-    ok_button = ("link text", '确定')   #   确定
+    # 弹出窗口元素
+    save_button = ("css", "span.l-btn-text")    # 保存
+    ok_button = ("class name","l-btn-text")    # 确定
+    # ok_button = ("class name","l-btn-small")    # 确定
+    close_button = ("class name","panel-tool-close")    # 关闭
+    # cancle_button = ("link text", '取  消')    # 取消
+    alart_win = ("class name", "messager-window")        #  系统提示窗口
+
     username = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
 
@@ -36,14 +41,32 @@ class Page_Account_GS_ADD(ly):
         '''保存'''
         self.click(self.save_button)
 
+
+    def click_close(self):
+        '''取消'''
+        try:
+            self.is_located(self.close_button)
+            self.click(self.close_button)
+        except:
+            print u"查找弹出窗口元素异常"
+
+
     def alert(self):
-        '''保存'''
-        if self.is_text_in_value(self.exist_loc,"用户名已经被占用") == 1:
-            print "新建公司失败，用户名被占用"
-        elif self.is_text_in_value(self.success_loc, "新建公司成功") == 1:
-            print "新建公司成功"
-        else:
-            print ""
+        '''新建成功，点击弹出界面按钮；新建不成功，关闭新建界面'''
+        try:
+            al = self.is_located(self.alart_win)
+            if al is not False:
+                # 新建公司成功
+                self.click_ok()
+                return True
+            else:
+                # 新建公司失败
+                self.click_close()
+                return False
+        except:
+            self.click_close()
+            return False
+            print u"查找弹出窗口元素异常"
 
     def click_ok(self):
         '''确定'''
