@@ -44,8 +44,8 @@ class addpresident(unittest.TestCase):
         # self.assertEqual(result, expect_result)
         # links = self.driver.find_elements(*self.locator_result)
         # for link in links:
-        print("-------公司登录  成功-------")
-        log.info("-------公司登录  用例结束-------")
+        print("-------总监登录  成功-------")
+        log.info("-------总监登录  用例结束-------")
 
     def test02_addcompany(self):
         '''新增会长'''

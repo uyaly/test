@@ -33,7 +33,7 @@ class addleague(unittest.TestCase):
 
     def test01_login(self):
         '''超级总监登录'''
-        self.username = Config().get('Sleague_LOGINNAME')
+        self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
@@ -44,11 +44,11 @@ class addleague(unittest.TestCase):
         # self.assertEqual(result, expect_result)
         # links = self.driver.find_elements(*self.locator_result)
         # for link in links:
-        print("-------超级总监登录  成功-------")
-        log.info("-------超级总监登录  用例结束-------")
+        print("-------总监登录  成功-------")
+        log.info("-------总监登录  用例结束-------")
 
     def test02_addcompany(self):
-        '''新增总监'''
+        '''新增联盟主'''
         self.username = Config().get('league_NAME')
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('league_NAME')
@@ -56,7 +56,7 @@ class addleague(unittest.TestCase):
 
         self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("总监")
+        self.A.IntoModule("联盟主1")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
@@ -83,7 +83,7 @@ class addleague(unittest.TestCase):
         time.sleep(3)
         self.A_league_ADD.click_save()
         self.A_league_ADD.click_ok()
-        log.info('-------新增超级总监    用例结束-------')
+        log.info('-------新增联盟主    用例结束-------')
 
     # def test03_loginout(self):
     #     '''退出'''

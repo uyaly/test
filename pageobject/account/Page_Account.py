@@ -6,14 +6,19 @@ from selenium.webdriver.common.keys import Keys
 class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
+    # 账号管理
     Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
     Account_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/div/a/em")
+    Account_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[2]/div/a/em")
+    # 子模块
     GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
     SCEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
     CEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[3]/a")
     CEO_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li/a")
     LEA_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[4]/a")
+    LEA_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[1]/a")
     HZ_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[5]/a")
+    HZ_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[2]/a")
     ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[6]/a")
     DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[7]/a")
     HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[8]/a")
@@ -39,15 +44,30 @@ class Page_Account(ly):
         elif (module == "超级总监"):
             self.click(self.Account_loc)
             self.click(self.SCEO_loc)
+
         elif (module == "总监"):
+        # 默认管理员进入总监子模块
+            self.click(self.Account_loc1)
+            self.click(self.CEO_loc1)
+
+        elif (module == "总监1"):
+        # 超级总监登录进入总监子模块
             self.click(self.Account_loc1)
             self.click(self.CEO_loc1)
         elif (module == "联盟主"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
+        elif (module == "联盟主1"):
+        # 总监登录进入联盟主
+            self.click(self.Account_loc2)
+            self.click(self.GS_loc1)
         elif (module == "公司"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
+        elif (module == "公司1"):
+        # 总监登录进入公司
+            self.click(self.Account_loc2)
+            self.click(self.GS_loc2)
         elif (module == "会长"):
             self.click(self.Account_loc)
             self.click(self.HZ_loc)
