@@ -26,7 +26,7 @@ class addsuperCEO(unittest.TestCase):
         self.A_HZ_ADD = Page_Account_HZ_ADD(self.driver)
 
         self.l.open(self.url)
-        # 浏览器最大化
+        # 浏览器最大化,
         self.driver.maximize_window()
         self.driver.implicitly_wait(30)
 
