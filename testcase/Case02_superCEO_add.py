@@ -5,7 +5,7 @@ import ddt
 from pageobject.account.Page_Account import Page_Account
 from selenium import webdriver
 from pageobject.Page_Login import Page_Login
-from pageobject.account.Page_Account_HZ_ADD import Page_Account_HZ_ADD
+from pageobject.account.Page_Account_SCEO_ADD import Page_Account_SCEO_ADD
 from utils.config import Config
 from utils.log1 import Log
 
@@ -23,7 +23,7 @@ class addsuperCEO(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
-        self.A_HZ_ADD = Page_Account_HZ_ADD(self.driver)
+        self.A_SCEO_ADD = Page_Account_SCEO_ADD(self.driver)
 
         self.l.open(self.url)
         # 浏览器最大化,
@@ -48,7 +48,7 @@ class addsuperCEO(unittest.TestCase):
         log.info("-------公司登录  用例结束-------")
 
     def test02_addcompany(self):
-        '''新增会长'''
+        '''新增超级总监'''
         self.username = Config().get('SCEO_NAME')
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('SCEO_NAME')
@@ -68,29 +68,29 @@ class addsuperCEO(unittest.TestCase):
         self.driver.switch_to.default_content()
         # 新增界面
         time.sleep(3)
-        self.A_HZ_ADD.input_club(self.username)
+        self.A_SCEO_ADD.input_club(self.username)
         time.sleep(3)
         # 滚动到底部
-        self.driver.execute_script("$('#form>div')[0].scrollTop=500")
+        # self.driver.execute_script("$('#form>div')[0].scrollTop=500")
+        # time.sleep(3)
+        self.A_SCEO_ADD.input_loginid(self.loginid)
         time.sleep(3)
-        self.A_HZ_ADD.input_loginid(self.loginid)
+        self.A_SCEO_ADD.input_psw(self.psw)
         time.sleep(3)
-        self.A_HZ_ADD.input_psw(self.psw)
+        self.A_SCEO_ADD.input_psw1(self.psw)
         time.sleep(3)
-        self.A_HZ_ADD.input_psw1(self.psw)
+        self.A_SCEO_ADD.input_name(self.username)
         time.sleep(3)
-        self.A_HZ_ADD.input_name(self.username)
+        self.A_SCEO_ADD.input_phone(self.phone)
         time.sleep(3)
-        self.A_HZ_ADD.input_phone(self.phone)
-        time.sleep(3)
-        self.A_HZ_ADD.click_save()
-        self.A_HZ_ADD.click_ok()
-        log.info('-------新增会长    用例结束-------')
+        self.A_SCEO_ADD.click_save()
+        self.A_SCEO_ADD.click_ok()
+        log.info('-------新增超级总监    用例结束-------')
 
-    def test03_loginout(self):
-        '''退出'''
-        self.A.LoginOut()
-        log.info("-------公司退出  用例结束-------")
+    # def test03_loginout(self):
+    #     '''退出'''
+    #     self.A.LoginOut()
+    #     log.info("-------公司退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

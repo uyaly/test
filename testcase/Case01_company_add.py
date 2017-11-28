@@ -77,10 +77,11 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
 
-    def test03_loginout(self):
-        '''退出'''
-        self.A.LoginOut()
-        log.info("-------管理员退出  用例结束-------")
+    # def test03_loginout(self):
+    #     '''退出'''
+    #     WebDriverWait(driver,3,0.5).until(EC.presence_of_element_located((By.ID,"saveNewFormId")))
+    #     self.A.LoginOut()
+    #     log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

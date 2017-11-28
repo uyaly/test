@@ -6,7 +6,6 @@ from selenium.webdriver.common.keys import Keys
 class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
-    .//*[@id='navi']/div/div/div[3]/div/a/em
     Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
     GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
     SCEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
