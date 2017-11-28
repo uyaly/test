@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 class Page_Account_GS_ADD(ly):
-
+    '''公司新增'''
     loginid_loc = ("id", '_easyui_textbox_input1')
     password_loc = ("id", '_easyui_textbox_input6')
     password1_loc = ("id", '_easyui_textbox_input7')

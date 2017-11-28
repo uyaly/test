@@ -5,7 +5,7 @@ import ddt
 from pageobject.account.Page_Account import Page_Account
 from selenium import webdriver
 from pageobject.Page_Login import Page_Login
-from pageobject.account.Page_Account_SCEO_ADD import Page_Account_SCEO_ADD
+from pageobject.account.Page_Account_league_ADD import Page_Account_league_ADD
 from utils.config import Config
 from utils.log1 import Log
 
@@ -13,7 +13,7 @@ log = Log()
 
 
 @ddt.ddt
-class addsuperCEO(unittest.TestCase):
+class addleague(unittest.TestCase):
     u'''登录'''
 
 
@@ -23,7 +23,7 @@ class addsuperCEO(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
-        self.A_SCEO_ADD = Page_Account_SCEO_ADD(self.driver)
+        self.A_league_ADD = Page_Account_league_ADD(self.driver)
 
         self.l.open(self.url)
         # 浏览器最大化,
@@ -32,8 +32,8 @@ class addsuperCEO(unittest.TestCase):
 
 
     def test01_login(self):
-        '''公司登录'''
-        self.username = Config().get('GS_NAME')
+        '''超级总监登录'''
+        self.username = Config().get('Sleague_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
@@ -44,19 +44,19 @@ class addsuperCEO(unittest.TestCase):
         # self.assertEqual(result, expect_result)
         # links = self.driver.find_elements(*self.locator_result)
         # for link in links:
-        print("-------公司登录  成功-------")
-        log.info("-------公司登录  用例结束-------")
+        print("-------超级总监登录  成功-------")
+        log.info("-------超级总监登录  用例结束-------")
 
     def test02_addcompany(self):
-        '''新增超级总监'''
-        self.username = Config().get('SCEO_NAME')
+        '''新增总监'''
+        self.username = Config().get('league_NAME')
         self.psw = Config().get('PASSWORD')
-        self.loginid = Config().get('SCEO_NAME')
+        self.loginid = Config().get('league_NAME')
         self.phone = Config().get('PHONE')
 
         self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("超级总监")
+        self.A.IntoModule("总监")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
@@ -71,18 +71,18 @@ class addsuperCEO(unittest.TestCase):
         # 滚动到底部
         # self.driver.execute_script("$('#form>div')[0].scrollTop=500")
         # time.sleep(3)
-        self.A_SCEO_ADD.input_loginid(self.loginid)
+        self.A_league_ADD.input_loginid(self.loginid)
         time.sleep(3)
-        self.A_SCEO_ADD.input_psw(self.psw)
+        self.A_league_ADD.input_psw(self.psw)
         time.sleep(3)
-        self.A_SCEO_ADD.input_psw1(self.psw)
+        self.A_league_ADD.input_psw1(self.psw)
         time.sleep(3)
-        self.A_SCEO_ADD.input_name(self.username)
+        self.A_league_ADD.input_name(self.username)
         time.sleep(3)
-        self.A_SCEO_ADD.input_phone(self.phone)
+        self.A_league_ADD.input_phone(self.phone)
         time.sleep(3)
-        self.A_SCEO_ADD.click_save()
-        self.A_SCEO_ADD.click_ok()
+        self.A_league_ADD.click_save()
+        self.A_league_ADD.click_ok()
         log.info('-------新增超级总监    用例结束-------')
 
     # def test03_loginout(self):

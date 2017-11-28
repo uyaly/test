@@ -7,9 +7,11 @@ class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
     Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
+    Account_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/div/a/em")
     GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
     SCEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
     CEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[3]/a")
+    CEO_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li/a")
     LEA_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[4]/a")
     HZ_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[5]/a")
     ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[6]/a")
@@ -30,24 +32,33 @@ class Page_Account(ly):
 
     def IntoModule(self, module):
         '''进入模块'''
-        self.click(self.Account_loc)
+
         if (module == "公司"):
+            self.click(self.Account_loc)
             self.click(self.GS_loc)
         elif (module == "超级总监"):
+            self.click(self.Account_loc)
             self.click(self.SCEO_loc)
         elif (module == "总监"):
-            self.click(self.CEO_loc)
+            self.click(self.Account_loc1)
+            self.click(self.CEO_loc1)
         elif (module == "联盟主"):
+            self.click(self.Account_loc)
             self.click(self.GS_loc)
         elif (module == "公司"):
+            self.click(self.Account_loc)
             self.click(self.GS_loc)
         elif (module == "会长"):
+            self.click(self.Account_loc)
             self.click(self.HZ_loc)
         elif (module == "总代"):
+            self.click(self.Account_loc)
             self.click(self.ZD_loc)
         elif (module == "代理"):
+            self.click(self.Account_loc)
             self.click(self.DL_loc)
         else:
+            self.click(self.Account_loc)
             self.click(self.HY_loc)
 
     def LoginOut(self):

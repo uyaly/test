@@ -2,8 +2,8 @@
 from testcase.ly_selenium import ly  # 导入4.11二次封装的类
 from utils.config import Config, DRIVER_PATH
 
-class Page_Account_SCEO_ADD(ly):
-    '''超级总监新增'''
+class Page_Account_league_ADD(ly):
+    '''联盟主新增'''
     # 新增界面输入项
     loginid_loc = ("id", '_easyui_textbox_input1')
     password_loc = ("id", '_easyui_textbox_input5')
@@ -15,9 +15,9 @@ class Page_Account_SCEO_ADD(ly):
     save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')   #   确定
 
-    username = Config().get('SCEO_LOGINNAME')
+    username = Config().get('league_LOGINNAME')
     psw = Config().get('PASSWORD')
-    loginid = Config().get('SCEO_NAME')
+    loginid = Config().get('league_NAME')
     phone = Config().get('PHONE')
 
     def input_loginid(self, loginid):
