@@ -35,13 +35,14 @@ def add_case(case_path, rule):
 def run_case(all_case, report_path):
     '''执行所有的用例, 并把结果写入测试报告'''
     now = time.strftime("%Y_%m_%d %H_%M_%S")
-    report_abspath = os.path.join(report_path, now + "result.html")
-    # report_abspath = "D:\\web_project\\report\\"+now+"result.html"
+    # report_abspath = os.path.join(report_path, now + "result.html")
+    report_abspath = os.path.join(report_path, "result.html")
     fp = open(report_abspath, "wb")
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
                                            title=u'自动化测试报告,测试结果如下：',
                                            description=u'用例执行情况：')
     # 调用add_case函数返回值
+
     runner.run(all_case)
     fp.close()
 
@@ -86,7 +87,7 @@ def send_mail(sender, psw, receiver, smtpserver, report_file):
 if __name__ == "__main__":
     # 测试用例的路径、匹配规则
     case_path = r"D:\PycharmProjects\test_hpk2017\testcase"
-    rule = "Case01*.py"
+    rule = "Case0*.py"
 
     # 1加载用例
     all_case = add_case(case_path, rule)

@@ -14,7 +14,7 @@ log = Log()
 
 @ddt.ddt
 class addpresident(unittest.TestCase):
-    u'''登录'''
+    u'''总监登录，新增会长'''
 
     @classmethod
     def setUpClass(self):
@@ -30,7 +30,7 @@ class addpresident(unittest.TestCase):
         self.driver.implicitly_wait(30)
 
     def test01_login(self):
-        '''超级总监登录'''
+        '''总监登录'''
         self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)

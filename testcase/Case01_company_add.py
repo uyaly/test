@@ -12,7 +12,7 @@ from utils.log1 import Log
 log = Log()
 @ddt.ddt
 class addcompany(unittest.TestCase):
-    u'''登录'''
+    u'''管理员登录，新增公司'''
 
     @classmethod
     def setUpClass(self):
@@ -65,6 +65,12 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.click_save()
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
+        cells = self.driver.find_elements("class name", "datagrid-cell")
+        # i = 0
+        # for i in range(0, 20):
+        #     if (cells[i].field == self.username):
+        #         print "找到数据，新增成功"
+        #     i = i +1
 
     # def test03_loginout(self):
     #     '''退出'''

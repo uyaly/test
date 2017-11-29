@@ -14,7 +14,7 @@ log = Log()
 
 @ddt.ddt
 class addCEO(unittest.TestCase):
-    u'''登录'''
+    u'''超级总监登录，新增总监'''
 
 
     @classmethod

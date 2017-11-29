@@ -12,7 +12,7 @@ log = Log()
 
 @ddt.ddt
 class delcompany(unittest.TestCase):
-    u'''管理员登录新增公司'''
+    u'''管理员登录删除公司'''
 
     @classmethod
     def setUpClass(self):

@@ -14,7 +14,7 @@ log = Log()
 
 @ddt.ddt
 class addleague(unittest.TestCase):
-    u'''登录'''
+    u'''总监登录，新增联盟主'''
 
     @classmethod
     def setUpClass(self):
@@ -31,7 +31,7 @@ class addleague(unittest.TestCase):
 
 
     def test01_login(self):
-        '''超级总监登录'''
+        '''总监登录'''
         self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
