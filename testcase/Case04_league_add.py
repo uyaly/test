@@ -16,7 +16,6 @@ log = Log()
 class addleague(unittest.TestCase):
     u'''登录'''
 
-
     @classmethod
     def setUpClass(self):
         self.url = Config().get('URL')

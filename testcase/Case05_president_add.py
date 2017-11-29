@@ -16,7 +16,6 @@ log = Log()
 class addpresident(unittest.TestCase):
     u'''登录'''
 
-
     @classmethod
     def setUpClass(self):
         self.url = Config().get('URL')
@@ -30,10 +29,9 @@ class addpresident(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.implicitly_wait(30)
 
-
     def test01_login(self):
-        '''公司登录'''
-        self.username = Config().get('GS_NAME')
+        '''超级总监登录'''
+        self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
@@ -56,7 +54,7 @@ class addpresident(unittest.TestCase):
 
         self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("会长")
+        self.A.IntoModule("会长1")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
@@ -87,10 +85,10 @@ class addpresident(unittest.TestCase):
         self.A_HZ_ADD.click_ok()
         log.info('-------新增会长    用例结束-------')
 
-    def test03_loginout(self):
-        '''退出'''
-        self.A.LoginOut()
-        log.info("-------公司退出  用例结束-------")
+    # def test03_loginout(self):
+    #     '''退出'''
+    #     self.A.LoginOut()
+    #     log.info("-------公司退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):
