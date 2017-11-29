@@ -77,7 +77,10 @@ class addpresident(unittest.TestCase):
         self.A_HZ_ADD.click_save()
         self.A_HZ_ADD.click_ok()
         log.info('-------新增会长    用例结束-------')
-
+        # t = self.driver.find_element("xpath",".//*[@id='body']/div[17]/div[2]/div[2]")
+        # t = self.driver.find_element("class name","messager-body")
+        # print t.text
+        # print "***************************"
     # def test03_loginout(self):
     #     '''退出'''
     #     self.A.LoginOut()

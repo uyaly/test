@@ -57,23 +57,29 @@ class Page_Account(ly):
         elif (module == "联盟主"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
+
         elif (module == "联盟主1"):
         # 总监登录进入联盟主
             self.click(self.Account_loc2)
             self.click(self.LEA_loc1)
+
         elif (module == "公司"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
+
         elif (module == "会长1"):
         # 总监登录进入会长
             self.click(self.Account_loc2)
             self.click(self.HZ_loc2)
+
         elif (module == "会长"):
             self.click(self.Account_loc)
             self.click(self.HZ_loc)
+
         elif (module == "总代"):
             self.click(self.Account_loc)
             self.click(self.ZD_loc)
+
         elif (module == "代理"):
             self.click(self.Account_loc)
             self.click(self.DL_loc)
