@@ -37,15 +37,8 @@ class addCEO(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
-        # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
-        # self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
-        # 期望结果
-        # expect_result = expect
-        # self.assertEqual(result, expect_result)
-        # links = self.driver.find_elements(*self.locator_result)
-        # for link in links:
-        print("-------超级总监登录  成功-------")
-        log.info("-------超级总监登录  用例结束-------")
+        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
+        log.info("-------管理员登录  用例结束-------")
 
     def test02_addcompany(self):
         '''新增总监'''

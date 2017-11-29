@@ -10,12 +10,9 @@ from utils.config import Config
 from utils.log1 import Log
 
 log = Log()
-
-
 @ddt.ddt
 class addcompany(unittest.TestCase):
     u'''登录'''
-
 
     @classmethod
     def setUpClass(self):
@@ -36,14 +33,7 @@ class addcompany(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
-        # links = self.l.is_text_in_element(("id", "loginOut"), u"退出")
-        # self.assertTrue(self.l.is_text_in_value(self.A.loginout_loc, "退出"), "没有找到退出按钮")
-        # 期望结果
-        # expect_result = expect
-        # self.assertEqual(result, expect_result)
-        # links = self.driver.find_elements(*self.locator_result)
-        # for link in links:
-        print("-------管理员登录  成功-------")
+        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
         log.info("-------管理员登录  用例结束-------")
 
     def test02_addcompany(self):
@@ -73,7 +63,6 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.input_name(self.username)
         time.sleep(3)
         self.A_GS_ADD.click_save()
-        # self.A_GS_ADD.alert()
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
 
