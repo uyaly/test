@@ -75,6 +75,11 @@ class addsuperCEO(unittest.TestCase):
         self.A_SCEO_ADD.input_phone(self.phone)
         time.sleep(3)
         self.A_SCEO_ADD.click_save()
+        t = self.driver.find_element("class name","messager-body")
+        print t.text
+        # self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新建成功")), "-------新建会长  失败-------" + t.text)
+        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
+        # 确定
         self.A_SCEO_ADD.click_ok()
         log.info('-------新增超级总监    用例结束-------')
 
