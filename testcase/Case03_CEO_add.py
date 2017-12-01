@@ -40,7 +40,7 @@ class addCEO(unittest.TestCase):
         self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
         log.info("-------管理员登录  用例结束-------")
 
-    def test02_addcompany(self):
+    def test02_add(self):
         '''新增总监'''
         self.username = Config().get('CEO_NAME')
         self.psw = Config().get('PASSWORD')

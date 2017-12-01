@@ -38,7 +38,7 @@ class addpresident(unittest.TestCase):
         self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
         log.info("-------管理员登录  用例结束-------")
 
-    def test02_addcompany(self):
+    def test02_add(self):
         '''新增会长'''
         self.username = Config().get('HZ_LOGINNAME')
         self.psw = Config().get('PASSWORD')
@@ -81,7 +81,7 @@ class addpresident(unittest.TestCase):
         t = self.driver.find_element("class name","messager-body")
         print t.text
         # self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新建成功")), "-------新建会长  失败-------" + t.text)
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"已有相同名称的俱乐部")), t.text)
+        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
         # 确定
         self.A_HZ_ADD.click_ok()
         log.info('-------新增会长    用例结束-------')
