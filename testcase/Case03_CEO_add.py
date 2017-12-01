@@ -37,8 +37,8 @@ class addCEO(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
-        log.info("-------管理员登录  用例结束-------")
+        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------超级总监登录  失败-------")
+        log.info("-------超级总监登录  用例结束-------")
 
     def test02_add(self):
         '''新增总监'''
@@ -81,7 +81,7 @@ class addCEO(unittest.TestCase):
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
         # 确定
         self.A_CEO_ADD.click_ok()
-        log.info('-------新增超级总监    用例结束-------')
+        log.info('-------新增总监    用例结束-------')
 
     # def test03_loginout(self):
     #     '''退出'''

@@ -20,6 +20,7 @@ class Page_Account(ly):
     HZ_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[5]/a")
     HZ_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[2]/a")
     ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[6]/a")
+    ZD_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[1]/a")
     DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[7]/a")
     HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[8]/a")
     # 功能按钮，增删改查
@@ -79,6 +80,10 @@ class Page_Account(ly):
         elif (module == "总代"):
             self.click(self.Account_loc)
             self.click(self.ZD_loc)
+
+        elif (module == "总代1"):
+            self.click(self.Account_loc2)
+            self.click(self.ZD_loc1)
 
         elif (module == "代理"):
             self.click(self.Account_loc)
