@@ -1,8 +1,8 @@
 # coding:utf-8
-import unittest
 import os
+import unittest
 # import HTMLTestRunner
-import report.HTMLTestRunner
+import utils.HTMLTestRunner
 import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -36,12 +36,13 @@ def add_case(case_path, rule):
 def run_case(all_case, report_path):
     '''执行所有的用例, 并把结果写入测试报告'''
     now = time.strftime("%Y_%m_%d %H_%M_%S")
-    # report_abspath = os.path.join(report_path, now + "result.html")
-    report_abspath = os.path.join(report_path, "result.html")
+    # 报告名字带日期时间
+    report_abspath = os.path.join(report_path, now + "result.html")
+    # report_abspath = os.path.join(report_path, "result.html")
     fp = open(report_abspath, "wb")
-    runner = report.HTMLTestRunner.HTMLTestRunner(stream=fp,
-                                           title=u'自动化测试报告,测试结果如下：',
-                                           description=u'用例执行情况：')
+    runner = utils.HTMLTestRunner.HTMLTestRunner(stream=fp,
+                                                 title=u'自动化测试报告,测试结果如下：',
+                                                 description=u'用例执行情况：')
     # 调用add_case函数返回值
 
     runner.run(all_case)
@@ -68,7 +69,7 @@ def send_mail(sender, psw, receiver, smtpserver, report_file):
         msg["from"] = sender
         msg["to"] = psw
         # 加上时间戳
-        # msg["date"] = time.strftime('%a, %d %b %Y %H_%M_%S %z')
+        msg["date"] = time.strftime('%a, %d %b %Y %H_%M_%S %z')
         msg.attach(body)
         # 添加附件
         att = MIMEText(open(report_file, "rb").read(), "base64", "utf-8")
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     port = 0                                # 端口
     sender = "uuyaly@126.com"                 # 账号
     psw = "612101010"                  # 密码
-    receiver = ["uuuyaly@qq.com", "uuyaly@qq.com"]           # 接收人
+    receiver = ["uuuyaly@qq.com", "oscaryou@qq.com"]           # 接收人
     subject = "自动化测试报告"
     # body = '<p>这个是自动发送的邮件</p>'     # 定义邮件正文为html格式
 
@@ -136,6 +137,6 @@ if __name__ == "__main__":
         smtp = smtplib.SMTP_SSL(smtpserver, port)
         smtp.login(sender, psw)                 # 登录
 
-    # smtp.sendmail(sender, receiver, msg.as_string())    # 发送
-    # smtp.quit()                             # 关闭
+    smtp.sendmail(sender, receiver, msg.as_string())    # 发送
+    smtp.quit()                             # 关闭
     # 授权码 qq（uuu）邮箱密码 kjhpjigpcglmbgde
