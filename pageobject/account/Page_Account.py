@@ -22,7 +22,10 @@ class Page_Account(ly):
     ZD_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[6]/a")
     ZD_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[1]/a")
     DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[7]/a")
+    DL_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[1]/a")
+
     HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[8]/a")
+    HY_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[1]/a")
     # 功能按钮，增删改查
     ADD_Button = ("id", 'add_Link')
     DEL_Button = ("id", 'del_Link')
@@ -88,6 +91,13 @@ class Page_Account(ly):
         elif (module == "代理"):
             self.click(self.Account_loc)
             self.click(self.DL_loc)
+
+        elif (module == "代理1"):
+            self.click(self.Account_loc1)
+            self.click(self.DL_loc1)
+        elif (module == "会员1"):
+            self.click(self.Account_loc1)
+            self.click(self.HY_loc1)
         else:
             self.click(self.Account_loc)
             self.click(self.HY_loc)

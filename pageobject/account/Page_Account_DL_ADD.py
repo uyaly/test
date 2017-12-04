@@ -15,10 +15,10 @@ class Page_Account_DL_ADD(ly):
     save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')   #   确定
 
-    username = Config().get('DL_NAME')
-    psw = Config().get('PASSWORD')
-    loginid = Config().get('DL_NAME')
-    phone = Config().get('PHONE')
+    # username = Config().get('DL_NAME')
+    # psw = Config().get('PASSWORD')
+    # loginid = Config().get('DL_NAME')
+    # phone = Config().get('PHONE')
 
     def input_loginid(self, loginid):
         '''输入账号'''

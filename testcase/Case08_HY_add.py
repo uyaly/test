@@ -40,14 +40,12 @@ class addZD(unittest.TestCase):
 
     def test02_add(self):
         '''新增会员'''
-        self.username = Config().get('HY_NAME')
-        self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('HY_NAME')
-        self.phone = Config().get('PHONE')
+        self.phone = Config().get('PHONE1')
 
         self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("会员")
+        self.A.IntoModule("会员1")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
@@ -62,12 +60,6 @@ class addZD(unittest.TestCase):
         # self.driver.execute_script("$('#form>div')[0].scrollTop=500")
         time.sleep(3)
         self.A_HY_ADD.input_loginid(self.loginid)
-        time.sleep(3)
-        self.A_HY_ADD.input_psw(self.psw)
-        time.sleep(3)
-        self.A_HY_ADD.input_psw1(self.psw)
-        time.sleep(3)
-        self.A_HY_ADD.input_name(self.username)
         time.sleep(3)
         self.A_HY_ADD.input_phone(self.phone)
         time.sleep(3)

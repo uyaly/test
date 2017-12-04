@@ -15,10 +15,10 @@ class Page_Account_ZD_ADD(ly):
     save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')   #   确定
 
-    username = Config().get('ZD_NAME')
-    psw = Config().get('PASSWORD')
-    loginid = Config().get('ZD_NAME')
-    phone = Config().get('PHONE')
+    # username = Config().get('ZD_NAME')
+    # psw = Config().get('PASSWORD')
+    # loginid = Config().get('ZD_NAME')
+    # phone = Config().get('PHONE')
 
     def input_loginid(self, loginid):
         '''输入账号'''

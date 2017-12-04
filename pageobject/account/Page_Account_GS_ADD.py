@@ -18,8 +18,8 @@ class Page_Account_GS_ADD(ly):
     # cancle_button = ("link text", '取  消')    # 取消
     alart_win = ("class name", "messager-window")        #  系统提示窗口
 
-    username = Config().get('GS_NAME')
-    psw = Config().get('PASSWORD')
+    # username = Config().get('GS_NAME')
+    # psw = Config().get('PASSWORD')
 
     def input_loginid(self, username):
         '''输入账号'''

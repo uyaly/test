@@ -15,10 +15,10 @@ class Page_Account_CEO_ADD(ly):
     save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')   #   确定
 
-    username = Config().get('CEO_LOGINNAME')
-    psw = Config().get('PASSWORD')
-    loginid = Config().get('CEO_NAME')
-    phone = Config().get('PHONE')
+    # username = Config().get('CEO_LOGINNAME')
+    # psw = Config().get('PASSWORD')
+    # loginid = Config().get('CEO_NAME')
+    # phone = Config().get('PHONE')
 
     def input_loginid(self, loginid):
         '''输入账号'''

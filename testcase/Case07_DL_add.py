@@ -47,7 +47,7 @@ class addZD(unittest.TestCase):
 
         self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("代理")
+        self.A.IntoModule("代理1")
         self.driver.implicitly_wait(30)
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
