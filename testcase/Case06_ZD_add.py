@@ -42,7 +42,7 @@ class addZD(unittest.TestCase):
         '''新增总代理'''
         self.username = Config().get('ZD_NAME')
         self.psw = Config().get('PASSWORD')
-        self.loginid = Config().get('HZ_NAME')
+        self.loginid = Config().get('ZD_NAME')
         self.phone = Config().get('PHONE')
 
         self.driver.implicitly_wait(10)
