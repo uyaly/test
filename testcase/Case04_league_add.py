@@ -31,7 +31,7 @@ class addleague(unittest.TestCase):
 
 
     def test01_login(self):
-        '''总监登录'''
+        u'''总监登录'''
         self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -40,7 +40,7 @@ class addleague(unittest.TestCase):
         log.info("-------总监登录  用例结束-------")
 
     def test02_add(self):
-        '''新增联盟主'''
+        u'''新增联盟主'''
         self.username = Config().get('league_NAME')
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('league_NAME')

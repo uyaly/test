@@ -28,7 +28,7 @@ class addcompany(unittest.TestCase):
         self.driver.implicitly_wait(30)
 
     def test01_login(self):
-        '''管理员登录'''
+        u'''管理员登录'''
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -37,7 +37,7 @@ class addcompany(unittest.TestCase):
         log.info("-------管理员登录  用例结束-------")
 
     def test02_add(self):
-        '''新增公司'''
+        u'''新增公司'''
         self.username = Config().get('GS_NAME')
         self.psw = Config().get('PASSWORD')
         self.driver.implicitly_wait(10)

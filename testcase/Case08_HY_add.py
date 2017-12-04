@@ -30,7 +30,7 @@ class addZD(unittest.TestCase):
         self.driver.implicitly_wait(30)
 
     def test01_login(self):
-        '''代理登录'''
+        u'''代理登录'''
         self.username = Config().get('DL_NAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -39,7 +39,7 @@ class addZD(unittest.TestCase):
         log.info("-------代理登录  用例结束-------")
 
     def test02_add(self):
-        '''新增会员'''
+        u'''新增会员'''
         self.loginid = Config().get('HY_NAME')
         self.phone = Config().get('PHONE1')
 

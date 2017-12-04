@@ -32,7 +32,7 @@ class addsuperCEO(unittest.TestCase):
 
 
     def test01_login(self):
-        '''公司登录'''
+        u'''公司登录'''
         self.username = Config().get('GS_NAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -41,7 +41,7 @@ class addsuperCEO(unittest.TestCase):
         log.info("-------公司登录  用例结束-------")
 
     def test02_add(self):
-        '''新增超级总监'''
+        u'''新增超级总监'''
         self.username = Config().get('SCEO_NAME')
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('SCEO_NAME')

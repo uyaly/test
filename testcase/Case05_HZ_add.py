@@ -30,7 +30,7 @@ class addHZ(unittest.TestCase):
         self.driver.implicitly_wait(30)
 
     def test01_login(self):
-        '''总监登录'''
+        u'''总监登录'''
         self.username = Config().get('CEO_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -39,7 +39,7 @@ class addHZ(unittest.TestCase):
         log.info("-------总监登录  用例结束-------")
 
     def test02_add(self):
-        '''新增会长'''
+        u'''新增会长'''
         self.username = Config().get('HZ_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('HZ_NAME')
