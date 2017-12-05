@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from utils.config import Config
 from utils.ly_selenium import ly  # 导入4.11二次封装的类
 from selenium.webdriver.support.wait import WebDriverWait
-
+import time
 class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
@@ -52,6 +52,7 @@ class Page_Account(ly):
 
         elif (module == "超级总监"):
             self.click(self.Account_loc)
+            time.sleep(1)
             self.click(self.SCEO_loc)
 
         elif (module == "总监"):
