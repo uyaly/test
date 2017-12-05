@@ -137,6 +137,6 @@ if __name__ == "__main__":
         smtp = smtplib.SMTP_SSL(smtpserver, port)
         smtp.login(sender, psw)                 # 登录
 
-    smtp.sendmail(sender, receiver, msg.as_string())    # 发送
-    smtp.quit()                             # 关闭
+    # smtp.sendmail(sender, receiver, msg.as_string())    # 发送
+    # smtp.quit()                             # 关闭
     # 授权码 qq（uuu）邮箱密码 kjhpjigpcglmbgde

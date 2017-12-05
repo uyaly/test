@@ -35,7 +35,6 @@ class delcompany(unittest.TestCase):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
-        time.sleep(10)
         self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Index", "-------管理员登录失败-------")
         log.info('-------管理员登录    用例结束-------')
 
