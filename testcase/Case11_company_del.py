@@ -8,6 +8,8 @@ from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from utils.config import Config
 from utils.log1 import Log
+from selenium.webdriver.support.wait import WebDriverWait
+
 log = Log()
 
 @ddt.ddt
@@ -27,6 +29,9 @@ class delcompany(unittest.TestCase):
 
     def test01_login(self):
         '''管理员登录'''
+        # 等待时长10秒，默认0.5秒询问一次
+        WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_id("kw")).send_keys("yoyo")
+
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
@@ -42,32 +47,39 @@ class delcompany(unittest.TestCase):
         # 进入模块
         self.A.IntoModule("公司")
         self.driver.implicitly_wait(30)
-
+        # 切换ifream
+        i = self.driver.find_element_by_id("mainIframe")
+        self.driver.switch_to.frame(i)
         # 选中一行,删除
-        try:
-            self.assertTrue(self.A.select_row(self.username), "-------删除公司失败-------")
+        # try:
+        # self.assertTrue(self.A.select_row(self.username), "-------删除公司失败-------")
+        company = self.driver.find_elements_by_class_name('datagrid-row')
+        n = 0
+        for n in range(len(company)):
+            if self.username in company[n].text:
+                company[n].click()
+                self.A.delete()
+        #
+        # except:
+        #
 
-        except:
-            # 切换ifream
-            i = self.driver.find_element_by_id("mainIframe")
-            self.driver.switch_to.frame(i)
-            self.A.delete()
-            # 释放iframe
-            self.driver.switch_to.default_content()
-            # 确定按钮
-            self.A.click_ok()
-            log.info('-------删除公司    用例结束-------')
 
-    def test03_loginout(self):
-        '''管理员退出'''
-        self.A.LoginOut()
-        self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Login", "-------管理员退出失败-------")
-        log.info("-------管理员退出  用例结束-------")
+        # 释放iframe
+        self.driver.switch_to.default_content()
+        #     # 确定按钮
+        #     self.A.click_ok()
+        #     log.info('-------删除公司    用例结束-------')
 
-    @classmethod
-    def tearDownClass(self):
-        # 关闭浏览器
-        self.driver.quit()
+    # def test03_loginout(self):
+    #     '''管理员退出'''
+    #     self.A.LoginOut()
+    #     self.assertTrue(self.driver.current_url == "http://47.52.77.154:8015/Default/Login", "-------管理员退出失败-------")
+    #     log.info("-------管理员退出  用例结束-------")
+
+    # @classmethod
+    # def tearDownClass(self):
+    #     # 关闭浏览器
+    #     self.driver.quit()
 
 # 执行测试主函数
 if __name__ == '__main__':

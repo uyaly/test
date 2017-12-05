@@ -1,7 +1,5 @@
 # coding:utf-8
-from testcase.ly_selenium import ly  # 导入4.11二次封装的类
-from utils.config import Config, DRIVER_PATH
-from selenium.common.exceptions import NoSuchElementException
+from utils.ly_selenium import ly  # 导入4.11二次封装的类
 
 
 class Page_Account_GS_ADD(ly):

@@ -1,7 +1,9 @@
 # coding:utf-8
-from testcase.ly_selenium import ly  # 导入4.11二次封装的类
-from utils.config import Config, DRIVER_PATH
 from selenium.webdriver.common.keys import Keys
+
+from utils.config import Config
+from utils.ly_selenium import ly  # 导入4.11二次封装的类
+from selenium.webdriver.support.wait import WebDriverWait
 
 class Page_Account(ly):
     # 定位器，定位页面元素
@@ -41,10 +43,13 @@ class Page_Account(ly):
 
     def IntoModule(self, module):
         '''进入模块'''
+        # 等待时长10秒，默认0.5秒询问一次
+        WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_id("loginOut"))
 
         if (module == "公司"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
+
         elif (module == "超级总监"):
             self.click(self.Account_loc)
             self.click(self.SCEO_loc)
@@ -74,6 +79,10 @@ class Page_Account(ly):
         elif (module == "会长1"):
         # 总监登录进入会长
             self.click(self.Account_loc2)
+            self.click(self.HZ_loc2)
+
+        elif (module == "会长2"):
+        # 总监登录连续进入会长
             self.click(self.HZ_loc2)
 
         elif (module == "会长"):
@@ -125,10 +134,12 @@ class Page_Account(ly):
     def select_row(self, username):
         '''选中列表中一行'''
         company = self.find_elements(self.company_loc)
-        # print company[1]
-        for i in company:
+
+        for i in range(len(company)):
+            print company[i]
             if (company[i].text == username):
                 self.click(self.company_loc)
+
             else:
                 print "没有查到"
 

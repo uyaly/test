@@ -21,7 +21,6 @@ class addcompany(unittest.TestCase):
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
-
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()

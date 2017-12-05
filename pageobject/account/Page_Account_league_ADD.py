@@ -1,6 +1,6 @@
 # coding:utf-8
-from testcase.ly_selenium import ly  # 导入4.11二次封装的类
-from utils.config import Config, DRIVER_PATH
+from utils.ly_selenium import ly  # 导入4.11二次封装的类
+
 
 class Page_Account_league_ADD(ly):
     '''联盟主新增'''
