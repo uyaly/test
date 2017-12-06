@@ -76,21 +76,12 @@ class addHZ(unittest.TestCase):
         time.sleep(3)
         self.A_HZ_ADD.click_save()
         time.sleep(3)
-        # 验证是否新增成功
-        # t = self.driver.find_element("xpath",".//*[@id='body']/div[17]/div[2]/div[2]")
-        t = self.driver.find_element("class name","messager-body")
-        print t.text
-        # self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新建成功")), "-------新建会长  失败-------" + t.text)
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
+        # 判断是否新建成功
+        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
         self.A_HZ_ADD.click_ok()
         log.info('-------新增会长    用例结束-------')
 
-
-    # def test03_loginout(self):
-    #     '''退出'''
-    #     self.A.LoginOut()
-    #     log.info("-------公司退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

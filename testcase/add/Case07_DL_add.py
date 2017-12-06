@@ -52,14 +52,11 @@ class addZD(unittest.TestCase):
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
         self.A.add()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
         # 新增界面
-        # 滚动到底部
-        # self.driver.execute_script("$('#form>div')[0].scrollTop=500")
         time.sleep(3)
         self.A_DL_ADD.input_loginid(self.loginid)
         time.sleep(3)
@@ -73,21 +70,11 @@ class addZD(unittest.TestCase):
         time.sleep(3)
         self.A_DL_ADD.click_save()
         time.sleep(3)
-        # 验证是否新增成功
-        # t = self.driver.find_element("xpath",".//*[@id='body']/div[17]/div[2]/div[2]")
-        t = self.driver.find_element("class name","messager-body")
-        print t.text
-        # self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新建成功")), "-------新建会长  失败-------" + t.text)
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
+        # 判断是否新建成功
+        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
         self.A_DL_ADD.click_ok()
         log.info('-------新增代理    用例结束-------')
-
-
-    # def test03_loginout(self):
-    #     '''退出'''
-    #     self.A.LoginOut()
-    #     log.info("-------公司退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):

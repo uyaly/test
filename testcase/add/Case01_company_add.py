@@ -31,7 +31,7 @@ class addcompany(unittest.TestCase):
         self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
-        # 测试结果,判断是否登录成功
+        # 判断是否登录成功
         self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
         log.info("-------管理员登录  用例结束-------")
 
@@ -46,8 +46,6 @@ class addcompany(unittest.TestCase):
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
-        # self.driver.find_element_by_id('add_Link').send_keys(Keys.ENTER)
         self.A.add()
         self.driver.implicitly_wait(3)
         # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
@@ -63,27 +61,11 @@ class addcompany(unittest.TestCase):
         time.sleep(3)
         self.A_GS_ADD.click_save()
         time.sleep(3)
-        # 验证是否新增成功
-        # t = self.driver.find_element("xpath",".//*[@id='body']/div[17]/div[2]/div[2]")
-        t = self.driver.find_element("class name","messager-body")
-        print t.text
-        # self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新建成功")), "-------新建会长  失败-------" + t.text)
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), t.text)
+        # 判断是否新建成功
+        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
         self.A_GS_ADD.click_ok()
         log.info('-------新增公司    用例结束-------')
-
-        # i = 0
-        # for i in range(0, 20):
-        #     if (cells[i].field == self.username):
-        #         print "找到数据，新增成功"
-        #     i = i +1
-
-    # def test03_loginout(self):
-    #     '''退出'''
-    #     WebDriverWait(driver,3,0.5).until(EC.presence_of_element_located((By.ID,"saveNewFormId")))
-    #     self.A.LoginOut()
-    #     log.info("-------管理员退出  用例结束-------")
 
     @classmethod
     def tearDownClass(self):
