@@ -9,7 +9,9 @@ from utils.config import Config
 from utils.log1 import Log
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from selenium.webdriver.support.wait import WebDriverWait
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 log = Log()
 
 @ddt.ddt
@@ -33,7 +35,7 @@ class delcompany(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------管理员登录  失败-------"))
         log.info("-------管理员登录          用例结束-------")
 
     def test02_delcompany(self):
@@ -52,8 +54,12 @@ class delcompany(unittest.TestCase):
         self.driver.switch_to.default_content()
         # 确定按钮
         self.A.click_ok()
+        # 判断是否新建成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        # 确定按钮
         self.A.click_ok()
-        log.info('-------删除公司    用例结束-------')
+        log.info('-------删除【公司】        用例结束-------')
 
     # def test09_loginout(self):
     #     u'''管理员退出'''

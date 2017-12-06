@@ -115,8 +115,8 @@ class ly(object):
             return result
 
     def is_text_in_element(self, locator, text, mmm, timeout=10):
-        '''
-        判断文本在元素里,没定位到元素返回False，定位到返回判断结果布尔值(ly增加了msg)
+        '''(ly增加了msg)
+        判断文本在元素里,没定位到元素返回False，定位到返回判断结果布尔值
         result = driver.text_in_element(locator, text)
         '''
         try:

@@ -8,9 +8,10 @@ from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_DL_ADD import Page_Account_DL_ADD
 from utils.config import Config
 from utils.log1 import Log
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 log = Log()
-
 
 @ddt.ddt
 class addZD(unittest.TestCase):
@@ -35,7 +36,7 @@ class addZD(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, u"退出", "-------超级总监登录  失败-------"))
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------总代登录  失败-------"))
         log.info("-------总代登录  用例结束-------")
 
     def test02_add(self):
@@ -71,7 +72,8 @@ class addZD(unittest.TestCase):
         self.A_DL_ADD.click_save()
         time.sleep(3)
         # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A_DL_ADD.click_ok()
         log.info('-------新增代理    用例结束-------')

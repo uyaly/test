@@ -8,7 +8,9 @@ from pageobject.Page_Login import Page_Login
 from pageobject.account.Page_Account_GS_ADD import Page_Account_GS_ADD
 from utils.config import Config
 from utils.log1 import Log
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 log = Log()
 @ddt.ddt
 class addcompany(unittest.TestCase):
@@ -32,7 +34,7 @@ class addcompany(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, u"退出", "-------超级总监登录  失败-------"))
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------管理员登录  失败-------"))
         log.info("-------管理员登录  用例结束-------")
 
     def test02_add(self):
@@ -62,15 +64,16 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.click_save()
         time.sleep(3)
         # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增公司    用例结束-------')
 
-    # @classmethod
-    # def tearDownClass(self):
-    #     # 关闭浏览器
-    #     self.driver.quit()
+    @classmethod
+    def tearDownClass(self):
+        # 关闭浏览器
+        self.driver.quit()
 
 # 执行测试主函数
 if __name__ == '__main__':
