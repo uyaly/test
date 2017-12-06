@@ -59,7 +59,7 @@ class delcompany(unittest.TestCase):
         self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
         # 确定按钮
         self.A.click_ok()
-        log.info('-------删除【公司】        用例结束-------')
+        log.info('-------删除【公司】           用例结束-------')
 
     # def test09_loginout(self):
     #     u'''管理员退出'''
