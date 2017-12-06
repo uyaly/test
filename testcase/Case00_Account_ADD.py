@@ -76,10 +76,10 @@ class add(unittest.TestCase):
         # 判断是否新增成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_GS_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【公司】         用例结束-------')
 
-    def test03_loginout(self):
+    def test04_loginout(self):
         u'''管理员退出'''
         self.A.LoginOut()
         log.info("-------管理员退出           用例结束-------")
@@ -124,10 +124,10 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_SCEO_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【超级总监】     用例结束-------')
 
-    def test13_loginout(self):
+    def test14_loginout(self):
         u'''公司退出'''
         self.A.LoginOut()
         # log.info("-------公司退出             用例结束-------")
@@ -171,10 +171,10 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_CEO_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【总监】         用例结束-------')
 
-    def test23_loginout(self):
+    def test24_loginout(self):
         u'''超级总监退出'''
         self.A.LoginOut()
         log.info("-------超级总监退出         用例结束-------")
@@ -217,7 +217,7 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_league_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【联盟主】       用例结束-------')
 
     def test33_add(self):
@@ -255,7 +255,7 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_HZ_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【会长】         用例结束-------')
 
     def test34_loginout(self):
@@ -302,10 +302,10 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_ZD_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【总代】        用例结束-------')
 
-    def test43_loginout(self):
+    def test44_loginout(self):
         u'''会长退出'''
         self.A.LoginOut()
         log.info("-------会长退出            用例结束-------")
@@ -348,10 +348,10 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_DL_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增【代理】        用例结束-------')
 
-    def test53_loginout(self):
+    def test54_loginout(self):
         u'''总代退出'''
         self.A.LoginOut()
         log.info("-------总代退出            用例结束-------")
@@ -388,10 +388,10 @@ class add(unittest.TestCase):
         # 判断是否新建成功
         self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
         # 确定
-        self.A_HY_ADD.click_ok()
+        self.A.click_ok()
         log.info('-------新增会员    用例结束-------')
 
-    def test63_loginout(self):
+    def test64_loginout(self):
         u'''代理退出'''
         self.A.LoginOut()
         log.info("-------总代退出            用例结束-------")

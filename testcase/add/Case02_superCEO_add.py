@@ -37,7 +37,7 @@ class addsuperCEO(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 测试结果,判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------公司登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, u"退出", "-------超级总监登录  失败-------"))
         log.info("-------公司登录  用例结束-------")
 
     def test02_add(self):

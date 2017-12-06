@@ -1,6 +1,5 @@
 # coding:utf-8
 from selenium.webdriver.common.keys import Keys
-
 from utils.config import Config
 from utils.ly_selenium import ly  # 导入4.11二次封装的类
 from selenium.webdriver.support.wait import WebDriverWait
@@ -34,12 +33,14 @@ class Page_Account(ly):
     EDIT_Button = ("id", 'edit_Link')
     QUERY_Button = ("id", 'a_query')
     # 删除一行
-    company_loc = ("class name", 'datagrid-row')    # 待删行
+    company_loc = ("class name", "datagrid-row")    # 待删行
     ok_button = ("link text", '确定')    # 确定
-    gs_name = Config().get('GS_NAME')
+    # gs_name = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
     # 查询
     account_loc = ("id", 'a_query')
+    # 弹出窗口文字
+    alert_text = ("class name", "messager-body")
 
     def IntoModule(self, module):
         '''进入模块'''
@@ -64,6 +65,7 @@ class Page_Account(ly):
         # 超级总监登录进入总监子模块
             self.click(self.Account_loc1)
             self.click(self.CEO_loc1)
+
         elif (module == "联盟主"):
             self.click(self.Account_loc)
             self.click(self.GS_loc)
@@ -133,16 +135,12 @@ class Page_Account(ly):
         self.send_keys_botton(self.QUERY_Button, Keys.ENTER)
 
     def select_row(self, username):
-        '''选中列表中一行'''
+        '''选中列表待删行'''
         company = self.find_elements(self.company_loc)
-
-        for i in range(len(company)):
-            print company[i]
-            if (company[i].text == username):
-                self.click(self.company_loc)
-
-            else:
-                print "没有查到"
+        for n in range(len(company)):
+            # print company[n].text
+            if username in company[n].text:
+                company[n].click()
 
     def click_ok(self):
         '''确定'''
