@@ -200,14 +200,14 @@ class ly(object):
 
     def back(self):
         """
-        Back to old window.
+        Back to oldcase window.
         Usage:
         driver.back()
         """
         self.driver.back()
     def forward(self):
         """
-        Forward to old window.
+        Forward to oldcase window.
         Usage:
         driver.forward()
         """
