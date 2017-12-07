@@ -26,7 +26,6 @@ class addcompany(unittest.TestCase):
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
 
     def test01_login(self):
         u'''管理员登录'''
@@ -41,30 +40,25 @@ class addcompany(unittest.TestCase):
         u'''新增公司'''
         self.username = Config().get('GS_NAME')
         self.psw = Config().get('PASSWORD')
-        self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("公司")
-        self.driver.implicitly_wait(30)
+        self.A.IntoModule("帐号4公司1")
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         self.A.add()
-        self.driver.implicitly_wait(3)
-        # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
         # 新增界面
         self.A_GS_ADD.input_loginid(self.username)
-        time.sleep(3)
+        time.sleep(2)
         self.A_GS_ADD.input_psw(self.psw)
-        time.sleep(3)
+        time.sleep(2)
         self.A_GS_ADD.input_psw1(self.psw)
-        time.sleep(3)
+        time.sleep(2)
         self.A_GS_ADD.input_name(self.username)
-        time.sleep(3)
+        time.sleep(2)
         self.A_GS_ADD.click_save()
-        time.sleep(3)
+        time.sleep(2)
         # 判断是否新建成功
-        time.sleep(1)
         self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()

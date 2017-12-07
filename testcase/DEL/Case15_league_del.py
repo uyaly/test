@@ -46,7 +46,7 @@ class delleague(unittest.TestCase):
         self.username = Config().get('league_NAME')
         self.psw = Config().get('PASSWORD')
         # 进入模块
-        self.A.IntoModule("联盟主1")
+        self.A.IntoModule("帐号2联盟主1")
         # 切换ifream
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
@@ -57,7 +57,7 @@ class delleague(unittest.TestCase):
         self.driver.switch_to.default_content()
         # 确定按钮
         self.A.click_ok()
-        # 判断是否新建成功
+        # 判断是否删除成功
         time.sleep(1)
         self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
         # 确定按钮

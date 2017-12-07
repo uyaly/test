@@ -8,12 +8,12 @@ class Page_Account(ly):
     # 定位器，定位页面元素
     loginout_loc = ("id", 'loginOut')
     # 账号管理
-    Account_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
+    Account_loc4 = ("xpath", ".//*[@id='navi']/div/div/div[4]/div/a/em")
     Account_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/div/a/em")
     Account_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[2]/div/a/em")
     # 子模块
-    GS_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
-    SCEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
+    GS_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[1]/a")
+    SCEO_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[2]/a")
     CEO_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[3]/a")
     CEO_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li/a")
     LEA_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[4]/a")
@@ -24,9 +24,11 @@ class Page_Account(ly):
     ZD_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[1]/a")
     DL_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[7]/a")
     DL_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[1]/a")
-
+    ZSHY_loc3 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[3]/a")
+    ZSHY_loc4 = ("xpath", ".//*[@id='navi']/div/div/div[2]/ul/li[4]/a")
     HY_loc = ("xpath", ".//*[@id='navi']/div/div/div[4]/ul/li[8]/a")
     HY_loc1 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[1]/a")
+    HY_loc2 = ("xpath", ".//*[@id='navi']/div/div/div[1]/ul/li[2]/a")
     # 功能按钮，增删改查
     ADD_Button = ("id", 'add_Link')
     DEL_Button = ("id", 'del_Link')
@@ -35,7 +37,6 @@ class Page_Account(ly):
     # 删除一行
     company_loc = ("class name", "datagrid-row")    # 待删行
     ok_button = ("link text", '确定')    # 确定
-    # gs_name = Config().get('GS_NAME')
     psw = Config().get('PASSWORD')
     # 查询
     account_loc = ("id", 'a_query')
@@ -47,71 +48,83 @@ class Page_Account(ly):
         # 等待时长10秒，默认0.5秒询问一次
         WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_id("loginOut"))
 
-        if (module == "公司"):
-            self.click(self.Account_loc)
-            self.click(self.GS_loc)
-
-        elif (module == "超级总监"):
-            self.click(self.Account_loc)
+        if (module == "帐号4公司1"):
+            self.click(self.Account_loc4)
             time.sleep(1)
-            self.click(self.SCEO_loc)
+            self.click(self.GS_loc1)
 
-        elif (module == "总监"):
-        # 默认管理员进入总监子模块
-            self.click(self.Account_loc1)
-            self.click(self.CEO_loc1)
+        elif (module == "帐号4超级总监2"):
+            self.click(self.Account_loc4)
+            time.sleep(1)
+            self.click(self.SCEO_loc2)
 
-        elif (module == "总监1"):
+        # elif (module == "总监"):
+        # # 默认管理员进入总监子模块
+        #     self.click(self.Account_loc1)
+        #     self.click(self.CEO_loc1)
+
+        elif (module == "帐号1总监1"):
         # 超级总监登录进入总监子模块
             self.click(self.Account_loc1)
+            time.sleep(1)
             self.click(self.CEO_loc1)
 
-        elif (module == "联盟主"):
-            self.click(self.Account_loc)
-            self.click(self.GS_loc)
+        # elif (module == "联盟主"):
+        #     self.click(self.Account_loc4)
+        #     self.click(self.GS_loc)
 
-        elif (module == "联盟主1"):
-        # 总监登录进入联盟主
+        # 总监登录，操作联盟主
+        elif (module == "帐号2联盟主1"):
             self.click(self.Account_loc2)
+            time.sleep(1)
             self.click(self.LEA_loc1)
 
-        elif (module == "公司"):
-            self.click(self.Account_loc)
-            self.click(self.GS_loc)
-
-        elif (module == "会长1"):
-        # 总监登录进入会长
+        # 总监登录,操作会长
+        elif (module == "帐号2会长2"):
             self.click(self.Account_loc2)
+            time.sleep(1)
             self.click(self.HZ_loc2)
 
-        elif (module == "会长2"):
-        # 总监登录连续进入会长
-            self.click(self.HZ_loc2)
+        # elif (module == "会长"):
+        #     self.click(self.Account_loc4)
+        #     self.click(self.HZ_loc)
 
-        elif (module == "会长"):
-            self.click(self.Account_loc)
-            self.click(self.HZ_loc)
+        # elif (module == "总代"):
+        #     self.click(self.Account_loc4)
+        #     self.click(self.ZD_loc)
 
-        elif (module == "总代"):
-            self.click(self.Account_loc)
-            self.click(self.ZD_loc)
-
-        elif (module == "总代1"):
+        # 会长登录，操作总代
+        elif (module == "帐号2总代1"):
             self.click(self.Account_loc2)
+            time.sleep(1)
             self.click(self.ZD_loc1)
+        elif (module == "帐号2直属会员4"):
+            self.click(self.Account_loc2)
+            time.sleep(1)
+            self.click(self.ZSHY_loc4)
+        #
+        # elif (module == "代理"):
+        #     self.click(self.Account_loc4)
+        #     self.click(self.DL_loc)
 
-        elif (module == "代理"):
-            self.click(self.Account_loc)
-            self.click(self.DL_loc)
-
-        elif (module == "代理1"):
+        # 总代登录，操作代理和删直属会员
+        elif (module == "帐号1代理1"):
             self.click(self.Account_loc1)
+            time.sleep(1)
             self.click(self.DL_loc1)
-        elif (module == "会员1"):
+        elif (module == "帐号1直属会员3"):
             self.click(self.Account_loc1)
+            time.sleep(1)
+            self.click(self.ZSHY_loc3)
+
+
+        # 代理登录，增删会员（包含直属会员）
+        elif (module == "帐号1会员1"):
+            self.click(self.Account_loc1)
+            time.sleep(1)
             self.click(self.HY_loc1)
         else:
-            self.click(self.Account_loc)
+            self.click(self.Account_loc4)
             self.click(self.HY_loc)
 
     def LoginOut(self):

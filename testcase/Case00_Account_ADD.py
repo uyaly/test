@@ -15,7 +15,9 @@ from pageobject.account.Page_Account_HZ_ADD import Page_Account_HZ_ADD
 from pageobject.account.Page_Account_ZD_ADD import Page_Account_ZD_ADD
 from pageobject.account.Page_Account_DL_ADD import Page_Account_DL_ADD
 from pageobject.account.Page_Account_HY_ADD import Page_Account_HY_ADD
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 log = Log()
 @ddt.ddt
 class add(unittest.TestCase):
@@ -46,7 +48,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------管理员登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------管理员登录           失败-------"))
         log.info("-------管理员登录           用例结束-------")
 
     def test02_add(self):
@@ -74,7 +76,8 @@ class add(unittest.TestCase):
         self.A_GS_ADD.click_save()
         time.sleep(2)
         # 判断是否新增成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【公司】         用例结束-------')
@@ -90,7 +93,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------公司登录        失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------公司登录             失败-------"))
         log.info("-------公司登录             用例结束-------")
 
     def test12_add(self):
@@ -109,7 +112,6 @@ class add(unittest.TestCase):
         # 释放iframe
         self.driver.switch_to.default_content()
         # 新增界面
-        time.sleep(2)
         self.A_SCEO_ADD.input_loginid(self.loginid)
         time.sleep(2)
         self.A_SCEO_ADD.input_psw(self.psw)
@@ -121,8 +123,9 @@ class add(unittest.TestCase):
         self.A_SCEO_ADD.input_phone(self.phone)
         time.sleep(2)
         self.A_SCEO_ADD.click_save()
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【超级总监】     用例结束-------')
@@ -138,7 +141,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------超级总监登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------超级总监登录         失败-------"))
         log.info("-------超级总监登录         用例结束-------")
 
     def test22_add(self):
@@ -168,8 +171,9 @@ class add(unittest.TestCase):
         self.A_CEO_ADD.input_phone(self.phone)
         time.sleep(2)
         self.A_CEO_ADD.click_save()
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【总监】         用例结束-------')
@@ -185,7 +189,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------总监登录       失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------总监登录            失败-------"))
         log.info("-------总监登录             用例结束-------")
 
     def test32_add(self):
@@ -214,8 +218,9 @@ class add(unittest.TestCase):
         self.A_league_ADD.input_phone(self.phone)
         time.sleep(2)
         self.A_league_ADD.click_save()
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【联盟主】       用例结束-------')
@@ -252,8 +257,9 @@ class add(unittest.TestCase):
         time.sleep(2)
         self.A_HZ_ADD.click_save()
         time.sleep(2)
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【会长】         用例结束-------')
@@ -269,7 +275,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------会长登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------会长登录            失败-------"))
         log.info("-------会长登录            用例结束-------")
 
     def test42_add(self):
@@ -299,8 +305,9 @@ class add(unittest.TestCase):
         time.sleep(2)
         self.A_ZD_ADD.click_save()
         time.sleep(2)
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【总代】        用例结束-------')
@@ -316,7 +323,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------总代登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------总代登录            失败-------"))
         log.info("-------总代登录            用例结束-------")
 
     def test52_add(self):
@@ -345,8 +352,9 @@ class add(unittest.TestCase):
         time.sleep(2)
         self.A_DL_ADD.click_save()
         time.sleep(2)
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
         log.info('-------新增【代理】        用例结束-------')
@@ -362,7 +370,7 @@ class add(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue((self.l.is_text_in_element(("id", "loginOut"), u"退出")), "-------代理登录  失败-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------代理登录            失败-------"))
         log.info("-------代理登录            用例结束-------")
 
     def test62_add(self):
@@ -385,16 +393,17 @@ class add(unittest.TestCase):
         time.sleep(2)
         self.A_HY_ADD.click_save()
         time.sleep(2)
-        # 判断是否新建成功
-        self.assertTrue((self.l.is_text_in_element(("class name", "messager-body"), u"新增成功")), self.driver.find_element("class name","messager-body").text)
+        # 判断是否新增成功
+        time.sleep(1)
+        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A.click_ok()
-        log.info('-------新增会员    用例结束-------')
+        log.info('-------新增【会员】        用例结束-------')
 
     def test64_loginout(self):
         u'''代理退出'''
         self.A.LoginOut()
-        log.info("-------总代退出            用例结束-------")
+        log.info("-------代理退出            用例结束-------")
 
 
     @classmethod

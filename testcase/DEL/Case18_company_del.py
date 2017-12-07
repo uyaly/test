@@ -7,18 +7,14 @@ from selenium import webdriver
 from pageobject.Page_Login import Page_Login
 from utils.config import Config
 from utils.log1 import Log
-from pageobject.account.Page_Account_HZ_ADD import Page_Account_HZ_ADD
-from pageobject.account.Page_Account_ZD_ADD import Page_Account_ZD_ADD
-from pageobject.account.Page_Account_DL_ADD import Page_Account_DL_ADD
-from pageobject.account.Page_Account_HY_ADD import Page_Account_HY_ADD
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 log = Log()
 
 @ddt.ddt
-class delHZ(unittest.TestCase):
-    u'''总监登录,删除会长'''
+class delcompany(unittest.TestCase):
+    u'''管理员登录,删除公司'''
 
     @classmethod
     def setUpClass(self):
@@ -26,26 +22,24 @@ class delHZ(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.l = Page_Login(self.driver)
         self.A = Page_Account(self.driver)
-        self.A_HZ_ADD = Page_Account_HZ_ADD(self.driver)
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
 
     def test01_login(self):
-        '''总监登录'''
-        self.username = Config().get('CEO_LOGINNAME')
+        '''管理员登录'''
+        self.username = Config().get('ADMIN')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------总监登录  失败-------"))
-        log.info("-------总监登录            用例结束-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------管理员登录  失败-------"))
+        log.info("-------管理员登录          用例结束-------")
 
-    def test02_del(self):
-        '''删除会长'''
-        self.username = Config().get('HZ_NAME')
-        self.psw = Config().get('PASSWORD')
+    def test02_delcompany(self):
+        '''删除公司'''
+        self.username = Config().get('GS_NAME')
         # 进入模块
-        self.A.IntoModule("会长1")
+        self.A.IntoModule("帐号4公司1")
         # 切换ifream
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
@@ -56,17 +50,17 @@ class delHZ(unittest.TestCase):
         self.driver.switch_to.default_content()
         # 确定按钮
         self.A.click_ok()
-        # 判断是否新建成功
+        # 判断是否删除成功
         time.sleep(1)
         self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
         # 确定按钮
         self.A.click_ok()
-        log.info('-------删除【会长】           用例结束-------')
+        log.info('-------删除【公司】           用例结束-------')
 
     # def test09_loginout(self):
-    #     u'''总监退出'''
+    #     u'''管理员退出'''
     #     self.A.LoginOut()
-    #     log.info("-------总监退出           用例结束-------")
+    #     log.info("-------管理员退出           用例结束-------")
 
     @classmethod
     def tearDownClass(self):

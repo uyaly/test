@@ -13,7 +13,6 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 log = Log()
 
-
 @ddt.ddt
 class addZD(unittest.TestCase):
     u'''会长登录，新增总代理'''
@@ -25,11 +24,9 @@ class addZD(unittest.TestCase):
         self.l = Page_Login(self.driver)  # login参数是LoginPage的实例
         self.A = Page_Account(self.driver)
         self.A_ZD_ADD = Page_Account_ZD_ADD(self.driver)
-
         self.l.open(self.url)
         # 浏览器最大化
         self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
 
     def test01_login(self):
         u'''会长登录'''
@@ -46,35 +43,28 @@ class addZD(unittest.TestCase):
         self.psw = Config().get('PASSWORD')
         self.loginid = Config().get('ZD_NAME')
         self.phone = Config().get('PHONE')
-
-        self.driver.implicitly_wait(10)
         # 进入模块
-        self.A.IntoModule("总代1")
-        self.driver.implicitly_wait(30)
+        self.A.IntoModule("帐号2总代1")
         # 点击新增按钮
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 感谢QQ：326186713 流年斑驳XXXXXX,input标签中的按钮要用send_keys(Keys.ENTER)来点击
         self.A.add()
-        self.driver.implicitly_wait(3)
-        # 释放iframe，重新回到主页上XXXXXX,iframe一定要切回来
         self.driver.switch_to.default_content()
         # 新增界面
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.input_loginid(self.loginid)
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.input_psw(self.psw)
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.input_psw1(self.psw)
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.input_name(self.username)
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.input_phone(self.phone)
-        time.sleep(3)
+        time.sleep(2)
         self.A_ZD_ADD.click_save()
-        time.sleep(3)
+        time.sleep(2)
         # 判断是否新建成功
-        time.sleep(1)
         self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
         # 确定
         self.A_ZD_ADD.click_ok()
