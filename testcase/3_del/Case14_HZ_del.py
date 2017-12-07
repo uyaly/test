@@ -18,8 +18,7 @@ log = Log()
 
 @ddt.ddt
 class delHZ(unittest.TestCase):
-    '''会长登录，删除直属会员
-    总监登录,删除会长'''
+    '''会长登录，删除直属会员；总监登录,删除会长'''
 
     @classmethod
     def setUpClass(self):
@@ -29,8 +28,6 @@ class delHZ(unittest.TestCase):
         self.A = Page_Account(self.driver)
         self.A_HZ_ADD = Page_Account_HZ_ADD(self.driver)
         self.l.open(self.url)
-        # 浏览器最大化
-        self.driver.maximize_window()
 
     def test01_login(self):
         '''会长登录'''
@@ -51,7 +48,7 @@ class delHZ(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username))
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()
@@ -59,13 +56,15 @@ class delHZ(unittest.TestCase):
         self.A.click_ok()
         # 判断是否删除成功
         time.sleep(1)
-        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
         log.info('-------删除会长【直属会员】用例结束-------')
 
     def test03_loginout(self):
         '''会长退出'''
+        # 释放iframe
+        self.driver.switch_to.default_content()
         self.A.LoginOut()
         log.info("-------会长退出           用例结束-------")
 
@@ -88,7 +87,7 @@ class delHZ(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username))
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()
@@ -96,7 +95,7 @@ class delHZ(unittest.TestCase):
         self.A.click_ok()
         # 判断是否删除成功
         time.sleep(1)
-        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
         log.info('-------删除【会长】           用例结束-------')

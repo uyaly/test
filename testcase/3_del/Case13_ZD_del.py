@@ -14,8 +14,7 @@ log = Log()
 
 @ddt.ddt
 class delZD(unittest.TestCase):
-    '''总代登录，删除直属会员
-    会长登录,删除总代'''
+    '''总代登录，删除直属会员；会长登录,删除总代'''
 
     @classmethod
     def setUpClass(self):

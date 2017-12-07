@@ -68,8 +68,14 @@ class ly(object):
 
     def find_elements(self, locator, timeout=10):
         '''定位一组元素'''
-        elements = WebDriverWait(self.driver, timeout, 1).until(EC.presence_of_all_elements_located(locator))
-        return elements
+        try:
+            elements = WebDriverWait(self.driver, timeout, 1).until(EC.presence_of_all_elements_located(locator))
+            return elements
+        except TimeoutException:
+            # print("没有找到元素" % str(locator))
+            print("没有找到元素")
+        except Exception as msg:
+            print("Error:%s" % msg)
 
     def click(self, locator):
         '''

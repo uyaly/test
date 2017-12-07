@@ -53,7 +53,7 @@ class delsuperCEO(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username), "未找到"+ self.username)
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()

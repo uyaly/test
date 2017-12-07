@@ -149,11 +149,20 @@ class Page_Account(ly):
 
     def select_row(self, username):
         '''选中列表待删行'''
+        b = False
         company = self.find_elements(self.company_loc)
-        for n in range(len(company)):
-            # print company[n].text
-            if username in company[n].text:
-                company[n].click()
+        try:
+            for n in range(len(company)):
+                # print company[n].text
+                if username in company[n].text:
+                    company[n].click()
+                    b = True
+                    return b
+            if b == False:
+                return False
+        except Exception as msg:
+            print("Error:%s" % msg)
+
 
     def click_ok(self):
         '''确定'''
