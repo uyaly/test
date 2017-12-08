@@ -34,6 +34,8 @@ class Page_Account(ly):
     DEL_Button = ("id", 'del_Link')
     EDIT_Button = ("id", 'edit_Link')
     QUERY_Button = ("id", 'a_query')
+    ZXED_Button = ("id", 'originalAmount_Link')
+    FFHS_Button = ("id", 'recoveryAmount_Link')
     # 删除一行
     company_loc = ("class name", "datagrid-row")    # 待删行
     ok_button = ("link text", '确定')    # 确定
@@ -146,6 +148,14 @@ class Page_Account(ly):
     def query(self):
         '''点击查询按钮'''
         self.send_keys_botton(self.QUERY_Button, Keys.ENTER)
+
+    def original(self):
+        '''点击增修额度按钮'''
+        self.send_keys_botton(self.ZXED_Button, Keys.ENTER)
+
+    def recovery(self):
+        '''点击发放与回收按钮'''
+        self.send_keys_botton(self.FFHS_Button, Keys.ENTER)
 
     def select_row(self, username):
         '''选中列表待删行'''

@@ -13,8 +13,8 @@ sys.setdefaultencoding('utf-8')
 log = Log()
 
 @ddt.ddt
-class delZD(unittest.TestCase):
-    '''总代登录，删除直属会员；会长登录,删除总代'''
+class originalHZ(unittest.TestCase):
+    '''会长登录，增修额度：直属会员、总代'''
 
     @classmethod
     def setUpClass(self):
@@ -25,13 +25,13 @@ class delZD(unittest.TestCase):
         self.l.open(self.url)
 
     def test01_login(self):
-        '''总代登录'''
-        self.username = Config().get('ZD_NAME')
+        '''会长登录'''
+        self.username = Config().get('HZ_LOGINNAME')
         self.psw = Config().get('PASSWORD')
         self.l.login(self.username, self.psw)
         # 判断是否登录成功
-        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------总代登录  失败-------"))
-        log.info("-------总代登录              用例结束-------")
+        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------会长登录  失败-------"))
+        log.info("-------会长登录              用例结束-------")
 
     def test02_delZSHY(self):
         '''删除总代的直属会员'''

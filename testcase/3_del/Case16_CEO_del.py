@@ -58,7 +58,7 @@ class delCEO(unittest.TestCase):
         self.A.click_ok()
         # 判断是否删除成功
         time.sleep(1)
-        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
         log.info('-------删除【总监】        用例结束-------')
