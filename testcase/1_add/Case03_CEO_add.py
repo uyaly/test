@@ -25,9 +25,6 @@ class addCEO(unittest.TestCase):
         self.A = Page_Account(self.driver)
         self.A_CEO_ADD = Page_Account_CEO_ADD(self.driver)
         self.l.open(self.url)
-        # 浏览器最大化,
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
 
     def test01_login(self):
         u'''超级总监登录'''
@@ -65,7 +62,7 @@ class addCEO(unittest.TestCase):
         time.sleep(2)
         self.A_CEO_ADD.click_save()
         # 判断是否新建成功
-        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text))))
         # 确定
         self.A_CEO_ADD.click_ok()
         log.info('-------新增总监    用例结束-------')

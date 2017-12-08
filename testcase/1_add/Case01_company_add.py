@@ -24,8 +24,6 @@ class addcompany(unittest.TestCase):
         self.A = Page_Account(self.driver)
         self.A_GS_ADD = Page_Account_GS_ADD(self.driver)
         self.l.open(self.url)
-        # 浏览器最大化
-        self.driver.maximize_window()
 
     def test01_login(self):
         u'''管理员登录'''
@@ -59,7 +57,7 @@ class addcompany(unittest.TestCase):
         self.A_GS_ADD.click_save()
         time.sleep(2)
         # 判断是否新建成功
-        self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "新增成功", str(self.l.get_text(self.A.alert_text))))
         # 确定
         self.A.click_ok()
         log.info('-------新增公司    用例结束-------')

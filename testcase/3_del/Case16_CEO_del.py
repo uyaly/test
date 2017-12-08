@@ -30,8 +30,6 @@ class delCEO(unittest.TestCase):
         self.A = Page_Account(self.driver)
         self.A_CEO_ADD = Page_Account_CEO_ADD(self.driver)
         self.l.open(self.url)
-        # 浏览器最大化
-        self.driver.maximize_window()
 
     def test01_login(self):
         '''超级总监登录'''
@@ -52,7 +50,7 @@ class delCEO(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username))
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()

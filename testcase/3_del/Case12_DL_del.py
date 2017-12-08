@@ -24,8 +24,6 @@ class delDL(unittest.TestCase):
         self.l = Page_Login(self.driver)
         self.A = Page_Account(self.driver)
         self.l.open(self.url)
-        # 浏览器最大化
-        self.driver.maximize_window()
 
     def test01_login(self):
         '''代理登录'''
@@ -45,7 +43,7 @@ class delDL(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username))
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()
@@ -60,6 +58,8 @@ class delDL(unittest.TestCase):
 
     def test03_loginout(self):
         '''代理退出'''
+        # 释放iframe
+        self.driver.switch_to.default_content()
         self.A.LoginOut()
         log.info("-------代理退出              用例结束-------")
 
@@ -81,7 +81,7 @@ class delDL(unittest.TestCase):
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
         # 选中一行,删除
-        self.A.select_row(self.username)
+        self.assertTrue(self.A.select_row(self.username))
         self.A.delete()
         # 释放iframe
         self.driver.switch_to.default_content()
