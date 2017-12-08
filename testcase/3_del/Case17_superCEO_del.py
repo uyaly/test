@@ -44,7 +44,6 @@ class delsuperCEO(unittest.TestCase):
     def test02_delSCEO(self):
         '''删除超级总监'''
         self.username = Config().get('SCEO_NAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号4超级总监2")
         # 切换ifream

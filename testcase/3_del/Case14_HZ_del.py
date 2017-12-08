@@ -41,7 +41,6 @@ class delHZ(unittest.TestCase):
     def test02_delZSHY(self):
         '''删除会长的直属会员'''
         self.username = Config().get('HZ_LOGINNAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号2直属会员4")
         # 切换ifream
@@ -80,7 +79,6 @@ class delHZ(unittest.TestCase):
     def test05_delHZ(self):
         '''删除会长'''
         self.username = Config().get('HZ_NAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号2会长2")
         # 切换ifream

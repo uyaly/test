@@ -43,7 +43,6 @@ class delCEO(unittest.TestCase):
     def test02_delCEO(self):
         '''删除总监'''
         self.username = Config().get('CEO_NAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号1总监1")
         # 切换ifream

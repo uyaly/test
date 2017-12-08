@@ -3,6 +3,7 @@ import time
 import unittest
 import ddt
 from pageobject.account.Page_Account import Page_Account
+from pageobject.account.Page_Account_ALL_original import Page_Account_ALL_original
 from selenium import webdriver
 from pageobject.Page_Login import Page_Login
 from utils.config import Config
@@ -13,7 +14,7 @@ sys.setdefaultencoding('utf-8')
 log = Log()
 
 @ddt.ddt
-class originalHZ(unittest.TestCase):
+class HZoriginal(unittest.TestCase):
     '''会长登录，增修额度：直属会员、总代'''
 
     @classmethod
@@ -23,6 +24,7 @@ class originalHZ(unittest.TestCase):
         self.l = Page_Login(self.driver)
         self.A = Page_Account(self.driver)
         self.l.open(self.url)
+        self.o = Page_Account_ALL_original(self.driver)
 
     def test01_login(self):
         '''会长登录'''
@@ -33,66 +35,57 @@ class originalHZ(unittest.TestCase):
         self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------会长登录  失败-------"))
         log.info("-------会长登录              用例结束-------")
 
-    def test02_delZSHY(self):
-        '''删除总代的直属会员'''
-        self.username = Config().get('ZD_NAME')
+    def test02_originalZSHY(self):
+        '''对直属会员增修额度'''
+        self.username = Config().get('HZ_LOGINNAME')
+        self.original = Config().get('HZ_ZSHY_original')
         # 进入模块
-        self.A.IntoModule("帐号1直属会员3")
+        self.A.IntoModule("帐号2直属会员4")
         # 切换ifream
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 选中一行,删除
+        # 选中一行,增修额度
         self.assertTrue(self.A.select_row(self.username))
-        self.A.delete()
+        self.A.original()
         # 释放iframe
         self.driver.switch_to.default_content()
-        # 确定按钮
+        # 修改
+        self.o.input_original(self.original)
+        # 保存、确定
         self.A.click_ok()
-        # 判断是否删除成功
+        self.A.click_ok()
+        # 判断是否修改成功
         time.sleep(1)
-        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text))))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "操作成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
-        log.info('-------删除总代【直属会员】  用例结束-------')
+        log.info('-------修改会长【直属会员】初期额度  用例结束-------')
 
-    def test03_loginout(self):
-        '''总代退出'''
-        # 释放iframe
-        self.driver.switch_to.default_content()
-        self.A.LoginOut()
-        log.info("-------总代退出              用例结束-------")
-
-    def test04_login(self):
-        '''会长登录'''
-        self.username = Config().get('HZ_LOGINNAME')
-        self.psw = Config().get('PASSWORD')
-        self.l.login(self.username, self.psw)
-        # 判断是否登录成功
-        self.assertTrue(self.l.is_text_in_element(self.A.loginout_loc, "退出", "-------会长登录  失败-------"))
-        log.info("-------会长登录              用例结束-------")
-
-    def test05_delZD(self):
-        '''删除总代'''
+    def test03_originalZD(self):
+        '''对总代理增修额度'''
         self.username = Config().get('ZD_NAME')
-        self.psw = Config().get('PASSWORD')
+        self.original = Config().get('ZD_original')
         # 进入模块
         self.A.IntoModule("帐号2总代1")
-        # 切换ifream
+        # 切换iframe
         i = self.driver.find_element_by_id("mainIframe")
         self.driver.switch_to.frame(i)
-        # 选中一行,删除
+        # 选中一行,增修额度
         self.assertTrue(self.A.select_row(self.username))
-        self.A.delete()
+        self.A.original()
         # 释放iframe
         self.driver.switch_to.default_content()
-        # 确定按钮
+        # 修改
+        self.o.input_original(self.original)
+        # 保存、确定
         self.A.click_ok()
-        # 判断是否删除成功
+        self.A.click_ok()
+        # 判断是否修改成功
         time.sleep(1)
-        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "操作成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
-        log.info('-------删除【总代理】         用例结束-------')
+        log.info('-------修改【总代理】初期额度       用例结束-------')
 
     # def test09_loginout(self):
     #     '''会长退出'''

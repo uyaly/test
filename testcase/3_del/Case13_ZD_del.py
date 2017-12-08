@@ -74,7 +74,6 @@ class delZD(unittest.TestCase):
     def test05_delZD(self):
         '''删除总代'''
         self.username = Config().get('ZD_NAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号2总代1")
         # 切换ifream
@@ -89,7 +88,7 @@ class delZD(unittest.TestCase):
         self.A.click_ok()
         # 判断是否删除成功
         time.sleep(1)
-        self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text)))
+        self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "删除成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
         log.info('-------删除【总代理】         用例结束-------')

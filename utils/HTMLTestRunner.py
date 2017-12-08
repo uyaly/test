@@ -718,7 +718,7 @@ class HTMLTestRunner(Template_mixin):
     def getReportAttributes(self, result):
         """
         Return report attributes as a list of (name, value).
-        Override this to 1_add custom attributes.
+        Override this to 0_add custom attributes.
         """
         startTime = str(self.startTime)[:19]
         duration = str(self.stopTime - self.startTime)

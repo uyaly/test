@@ -42,7 +42,6 @@ class delleague(unittest.TestCase):
     def test02_delleague(self):
         '''删除联盟主'''
         self.username = Config().get('league_NAME')
-        self.psw = Config().get('PASSWORD')
         # 进入模块
         self.A.IntoModule("帐号2联盟主1")
         # 切换ifream

@@ -2,7 +2,6 @@
 import yaml
 import os
 
-
 class YamlReader:
     u'''封装一个YamlReader类'''
 
