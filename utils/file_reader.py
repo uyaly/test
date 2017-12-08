@@ -1,4 +1,5 @@
 # coding:utf-8
+
 import yaml
 import os
 
@@ -20,3 +21,25 @@ class YamlReader:
         else:
             with open(self.yaml, 'rb')as f:
                 return list(yaml.safe_load_all(f))
+
+
+class ExcelUtil:
+    def __init__(self, xls):
+        if os.path.exists(xls):
+            self.xls = xls
+        else:
+            # raise FileNotFoundError('文件不存在！')
+            print '文件不存在'
+        self._data = None
+
+    @property
+    def data(self):
+        if self._data:
+            return self._data
+        else:
+            with open(self.xls, 'rb')as f:
+                return list(xls.safe_load_all(f))
+
+
+if __name__ == "__main__":
+    pass

@@ -51,10 +51,10 @@ class addHZ(unittest.TestCase):
         # 新增界面
         time.sleep(2)
         self.A_HZ_ADD.input_club(self.username)
-        time.sleep(2)
+        time.sleep(3)
         # 滚动到底部
         self.driver.execute_script("$('#form>div')[0].scrollTop=500")
-        time.sleep(2)
+        time.sleep(3)
         self.A_HZ_ADD.input_loginid(self.loginid)
         time.sleep(2)
         self.A_HZ_ADD.input_psw(self.psw)
