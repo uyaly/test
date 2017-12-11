@@ -40,7 +40,7 @@ class HZoriginal(unittest.TestCase):
         '''对直属会员增修额度'''
         self.zo = Page_ZSHY_original(self.driver)
         self.username = Config().get('HZ_NAME')
-        original = getData(1, "HZ_ZSHY_original")
+        original = getData(1, "HZ_ZSHY")
         # 进入模块
         self.A.IntoModule("帐号2直属会员4")
         # 切换ifream
@@ -61,14 +61,13 @@ class HZoriginal(unittest.TestCase):
         self.assertTrue(self.l.is_text_in_element(self.A.alert_text, "操作成功", str(self.l.get_text(self.A.alert_text))))
         # 确定按钮
         self.A.click_ok()
-        self.assertTrue(self.l.is_text_in_value())
         log.info('-------修改会长【直属会员】初期额度    用例结束-------')
 
     def test03_originalZD(self):
         '''对总代理增修额度'''
         self.username = Config().get('ZD_NAME')
         self.zd = Page_ZD_original(self.driver)
-        original = getData(1, "HZ_ZD_original")
+        original = getData(1, "HZ_ZD")
         # 进入模块
         self.A.IntoModule("总代1")
         # 切换iframe

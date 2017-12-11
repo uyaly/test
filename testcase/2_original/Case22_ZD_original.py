@@ -17,7 +17,7 @@ sys.setdefaultencoding('utf-8')
 log = Log()
 # @ddt.ddt
 class HZoriginal(unittest.TestCase):
-    '''会长登录，增修额度：直属会员、总代'''
+    '''总代登录，增修额度：直属会员、代理'''
 
     @classmethod
     def setUpClass(self):
@@ -40,7 +40,7 @@ class HZoriginal(unittest.TestCase):
         '''对直属会员增修额度'''
         self.zo = Page_ZSHY_original(self.driver)
         self.username = Config().get('ZD_NAME')
-        original = getData(1, "ZD_ZSHY_original")
+        original = getData(1, "ZD_ZSHY")
         # 进入模块
         self.A.IntoModule("帐号1直属会员3")
         # 切换ifream
@@ -67,7 +67,7 @@ class HZoriginal(unittest.TestCase):
         '''对代理增修额度'''
         self.username = Config().get('DL_NAME')
         self.zd = Page_ZD_original(self.driver)
-        original = getData(1, "ZD_DL_original")
+        original = getData(1, "ZD_DL")
         # 进入模块
         self.A.IntoModule("代理1")
         # 切换iframe
