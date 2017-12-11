@@ -9,4 +9,3 @@ class Page_ZSHY_original(ly):
     def input_original(self, original):
         '''输入初期额度'''
         self.send_keys(self.original_loc, original)
-

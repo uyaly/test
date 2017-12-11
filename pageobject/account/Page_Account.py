@@ -138,6 +138,10 @@ class Page_Account(ly):
         '''点击增修额度按钮'''
         self.send_keys_botton(self.ZXED_Button, Keys.ENTER)
 
+    def distribution(self):
+        '''点击回收与发放'''
+        self.send_keys_botton(self.FFHS_Button, Keys.ENTER)
+
     def recovery(self):
         '''点击发放与回收按钮'''
         self.send_keys_botton(self.FFHS_Button, Keys.ENTER)
