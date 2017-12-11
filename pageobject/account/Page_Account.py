@@ -37,9 +37,12 @@ class Page_Account(ly):
     ZXED_Button = ("id", 'originalAmount_Link')
     FFHS_Button = ("id", 'recoveryAmount_Link')
     # 删除一行
-    company_loc = ("class name", "datagrid-row")    # 待删行
+    row_loc = ("class name", "datagrid-row")    # 待删行
+    save_button = ("class name", 'l-btn-text')    # 保存
     ok_button = ("link text", '确定')    # 确定
     psw = Config().get('PASSWORD')
+    # 初始额度
+    HZ_ZSHY_loc = ("field", "OriginalAmount")    # 会长登录，直属会员
     # 查询
     account_loc = ("id", 'a_query')
     # 弹出窗口文字
@@ -60,20 +63,11 @@ class Page_Account(ly):
             time.sleep(1)
             self.click(self.SCEO_loc2)
 
-        # elif (module == "总监"):
-        # # 默认管理员进入总监子模块
-        #     self.click(self.Account_loc1)
-        #     self.click(self.CEO_loc1)
-
-        elif (module == "帐号1总监1"):
         # 超级总监登录进入总监子模块
+        elif (module == "帐号1总监1"):
             self.click(self.Account_loc1)
             time.sleep(1)
             self.click(self.CEO_loc1)
-
-        # elif (module == "联盟主"):
-        #     self.click(self.Account_loc4)
-        #     self.click(self.GS_loc)
 
         # 总监登录，操作联盟主
         elif (module == "帐号2联盟主1"):
@@ -87,14 +81,6 @@ class Page_Account(ly):
             time.sleep(1)
             self.click(self.HZ_loc2)
 
-        # elif (module == "会长"):
-        #     self.click(self.Account_loc4)
-        #     self.click(self.HZ_loc)
-
-        # elif (module == "总代"):
-        #     self.click(self.Account_loc4)
-        #     self.click(self.ZD_loc)
-
         # 会长登录，操作总代
         elif (module == "帐号2总代1"):
             self.click(self.Account_loc2)
@@ -104,10 +90,8 @@ class Page_Account(ly):
             self.click(self.Account_loc2)
             time.sleep(1)
             self.click(self.ZSHY_loc4)
-        #
-        # elif (module == "代理"):
-        #     self.click(self.Account_loc4)
-        #     self.click(self.DL_loc)
+        elif (module == "总代1"):
+            self.click(self.ZD_loc1)
 
         # 总代登录，操作代理和删直属会员
         elif (module == "帐号1代理1"):
@@ -118,7 +102,8 @@ class Page_Account(ly):
             self.click(self.Account_loc1)
             time.sleep(1)
             self.click(self.ZSHY_loc3)
-
+        elif (module == "代理1"):
+            self.click(self.DL_loc1)
 
         # 代理登录，增删会员（包含直属会员）
         elif (module == "帐号1会员1"):
@@ -160,12 +145,12 @@ class Page_Account(ly):
     def select_row(self, username):
         '''选中列表待删行'''
         b = False
-        company = self.find_elements(self.company_loc)
+        row = self.find_elements(self.row_loc)
         try:
-            for n in range(len(company)):
-                # print company[n].text
-                if username in company[n].text:
-                    company[n].click()
+            for n in range(len(row)):
+                # print row[n].text
+                if username in row[n].text:
+                    row[n].click()
                     b = True
                     return b
             if b == False:
@@ -173,6 +158,25 @@ class Page_Account(ly):
         except Exception as msg:
             print("Error:%s" % msg)
 
+    # def select_row(self, username):
+    #     '''查找列表中的初期额度'''
+    #     b = False
+    #     row = self.find_elements(self.row_loc)
+    #     try:
+    #         for n in range(len(row)):
+    #             # print row[n].text
+    #             if username in row[n].text:
+    #                 row[n].click()
+    #                 b = True
+    #                 return b
+    #         if b == False:
+    #             return False
+    #     except Exception as msg:
+    #         print("Error:%s" % msg)
+
+    def click_save(self):
+        '''保存'''
+        self.click(self.save_button)
 
     def click_ok(self):
         '''确定'''
