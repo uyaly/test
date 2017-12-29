@@ -89,7 +89,8 @@ if __name__ == "__main__":
     # 测试用例的路径、匹配规则，用例case0*新增；case1*删除；case2*初始额度；case3*发放回收
     # case_path = r"D:\PycharmProjects\test_hpk2017\testcase\0_add"
     case_path = r"D:\PycharmProjects\test_hpk2017\testcase\0_add1"
-    rule = "Case0*.py"
+    # case_path = r"D:\PycharmProjects\test_hpk2017\testcase\1_del"
+    rule = "Case*.py"
 
     # 1加载用例
     all_case = add_case(case_path, rule)
